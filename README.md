@@ -25,7 +25,6 @@ brew upgrade folddb
 
 - `folddb` -- CLI for interacting with your FoldDB instance
 - `folddb_server` -- HTTP server for the FoldDB dashboard and API
-- `schema_service` -- Local schema service for self-hosted deployments
 
 ## Formula bumps
 
