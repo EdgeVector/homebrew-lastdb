@@ -35,7 +35,7 @@ class Folddb < Formula
         http://localhost:9001
 
       Second-device bootstrap (restore from BIP39 recovery phrase):
-        https://github.com/EdgeVector/fold_db_node/blob/main/docs/dogfood/second-device.md
+        https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
     EOS
   end
 
