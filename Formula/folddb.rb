@@ -1,23 +1,23 @@
 class Folddb < Formula
   desc "Local-first database for personal data sovereignty"
   homepage "https://folddb.com"
-  version "0.4.0"
+  version "0.5.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/EdgeVector/fold_db/releases/download/v0.4.0/folddb-aarch64-apple-darwin.tar.gz"
-      sha256 "0b2d49d12b232bf208f2c08c93d01a63550d95555cd277e96407d27a9e6313a8"
+      url "https://github.com/EdgeVector/fold/releases/download/v0.5.0/folddb-aarch64-apple-darwin.tar.gz"
+      sha256 "f714bc82ae99f9d29087f6318504df5b3c343a5cee1450353ea6bb04d56bd09e"
     else
-      url "https://github.com/EdgeVector/fold_db/releases/download/v0.4.0/folddb-x86_64-apple-darwin.tar.gz"
-      sha256 "1357f87136c0150917bc0f44b5a90fb36de61ac421a6c0410c1fb03f688bc0fd"
+      url "https://github.com/EdgeVector/fold/releases/download/v0.5.0/folddb-x86_64-apple-darwin.tar.gz"
+      sha256 "3333ddfa73d5a32de7226cc01a76eae412e053c323aee68f70e29762aa89fdda"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/EdgeVector/fold_db/releases/download/v0.4.0/folddb-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "6c3824d1e2e0918cafe0f63d0d600ce3a0d65951963f5bf4cdddb9483cd09dd1"
+      url "https://github.com/EdgeVector/fold/releases/download/v0.5.0/folddb-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "2c34efdd1b4b2b6d1f2a832cd777918dc1c0e5171058e80d1a39ab66d9e8a451"
     end
   end
 
