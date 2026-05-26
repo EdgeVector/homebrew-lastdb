@@ -26,13 +26,39 @@ class Folddb < Formula
     bin.install "folddb_server"
   end
 
+  service do
+    run [opt_bin/"folddb_server", "--port", "9001"]
+    keep_alive true
+    run_at_load true
+    log_path var/"log/folddb/folddb.log"
+    error_log_path var/"log/folddb/folddb.err.log"
+    # Pin cwd to $HOME as a workaround for a fold_db_node tilde-expansion bug:
+    # the daemon takes `database.path: "~/.folddb/data"` literally and joins it
+    # to cwd, so existing dogfooders' data lives under $HOME/~/.folddb/data.
+    # Remove this line + comment once EdgeVector/fold kanban task 1dcda ships
+    # in a folddb release.
+    working_dir Dir.home
+    environment_variables HOME: Dir.home, PATH: std_service_path_env
+  end
+
   def caveats
     <<~EOS
-      To start the FoldDB daemon:
+      To start FoldDB as a background service that auto-restarts on login:
+        brew services start folddb
+
+      Or run it once in the foreground for ad-hoc / debugging:
         folddb daemon start
 
-      Then open the dashboard at:
-        http://localhost:9001
+      Either way, the web UI is at http://localhost:9001 once the daemon is up.
+      First-time setup (registering your node identity, optional cloud backup)
+      runs in the web UI — until you complete it, the daemon is up but won't
+      have an identity and the CLI won't work. Pass --no-open to `folddb daemon
+      start` to skip the browser open (e.g. on a headless box).
+
+      If you previously hand-rolled a LaunchAgent for folddb_server, stop it
+      first so port 9001 is free before `brew services start folddb`:
+        launchctl bootout "gui/$(id -u)/<your.label>"
+        rm ~/Library/LaunchAgents/<your.label>.plist
 
       Second-device bootstrap (restore from BIP39 recovery phrase):
         https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
