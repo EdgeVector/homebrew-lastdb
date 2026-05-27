@@ -36,6 +36,13 @@ class Folddb < Formula
 
       Second-device bootstrap (restore from BIP39 recovery phrase):
         https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
+
+      If you upgraded from fold_db_node < 0.5.1, your data may live at the
+      literal-tilde path $HOME/~/.folddb/data instead of $HOME/.folddb/data.
+      To check / migrate:
+        folddb migrate-tilde-data            # dry-run
+        folddb migrate-tilde-data --apply    # actually move it
+      Runbook: https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/tilde-data-migration.md
     EOS
   end
 
