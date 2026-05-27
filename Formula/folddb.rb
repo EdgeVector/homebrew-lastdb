@@ -1,23 +1,23 @@
 class Folddb < Formula
   desc "Local-first database for personal data sovereignty"
   homepage "https://folddb.com"
-  version "0.5.0"
+  version "0.5.1"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/EdgeVector/homebrew-folddb/releases/download/v0.5.0/folddb-aarch64-apple-darwin.tar.gz"
-      sha256 "f714bc82ae99f9d29087f6318504df5b3c343a5cee1450353ea6bb04d56bd09e"
+      url "https://github.com/EdgeVector/homebrew-folddb/releases/download/v0.5.1/folddb-aarch64-apple-darwin.tar.gz"
+      sha256 "244bcf1a36934d8bf78aa3ffa629c76aebaa53f7d31ee6775fda1919df714607"
     else
-      url "https://github.com/EdgeVector/homebrew-folddb/releases/download/v0.5.0/folddb-x86_64-apple-darwin.tar.gz"
-      sha256 "3333ddfa73d5a32de7226cc01a76eae412e053c323aee68f70e29762aa89fdda"
+      url "https://github.com/EdgeVector/homebrew-folddb/releases/download/v0.5.1/folddb-x86_64-apple-darwin.tar.gz"
+      sha256 "d753fb9ad73435bf0c05e6eba6e9b6523666ac889c0dd1dbe94a94cf7f71bd13"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/EdgeVector/homebrew-folddb/releases/download/v0.5.0/folddb-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "2c34efdd1b4b2b6d1f2a832cd777918dc1c0e5171058e80d1a39ab66d9e8a451"
+      url "https://github.com/EdgeVector/homebrew-folddb/releases/download/v0.5.1/folddb-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "adc274e73a3f6a761a69ff3d17448c7f788cc5e8dae6ba91df1f051eecf17dc6"
     end
   end
 
@@ -26,39 +26,13 @@ class Folddb < Formula
     bin.install "folddb_server"
   end
 
-  service do
-    run [opt_bin/"folddb_server", "--port", "9001"]
-    keep_alive true
-    run_at_load true
-    log_path var/"log/folddb/folddb.log"
-    error_log_path var/"log/folddb/folddb.err.log"
-    # Pin cwd to $HOME as a workaround for a fold_db_node tilde-expansion bug:
-    # the daemon takes `database.path: "~/.folddb/data"` literally and joins it
-    # to cwd, so existing dogfooders' data lives under $HOME/~/.folddb/data.
-    # Remove this line + comment once EdgeVector/fold kanban task 1dcda ships
-    # in a folddb release.
-    working_dir Dir.home
-    environment_variables HOME: Dir.home, PATH: std_service_path_env
-  end
-
   def caveats
     <<~EOS
-      To start FoldDB as a background service that auto-restarts on login:
-        brew services start folddb
-
-      Or run it once in the foreground for ad-hoc / debugging:
+      To start the FoldDB daemon:
         folddb daemon start
 
-      Either way, the web UI is at http://localhost:9001 once the daemon is up.
-      First-time setup (registering your node identity, optional cloud backup)
-      runs in the web UI — until you complete it, the daemon is up but won't
-      have an identity and the CLI won't work. Pass --no-open to `folddb daemon
-      start` to skip the browser open (e.g. on a headless box).
-
-      If you previously hand-rolled a LaunchAgent for folddb_server, stop it
-      first so port 9001 is free before `brew services start folddb`:
-        launchctl bootout "gui/$(id -u)/<your.label>"
-        rm ~/Library/LaunchAgents/<your.label>.plist
+      Then open the dashboard at:
+        http://localhost:9001
 
       Second-device bootstrap (restore from BIP39 recovery phrase):
         https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
