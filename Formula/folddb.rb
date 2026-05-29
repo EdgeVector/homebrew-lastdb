@@ -26,6 +26,15 @@ class Folddb < Formula
     bin.install "folddb_server"
   end
 
+  service do
+    run [opt_bin/"folddb_server", "--port", "9001"]
+    keep_alive true
+    run_at_load true
+    log_path var/"log/folddb/folddb.log"
+    error_log_path var/"log/folddb/folddb.err.log"
+    environment_variables HOME: Dir.home, PATH: std_service_path_env
+  end
+
   def caveats
     <<~EOS
       To start the FoldDB daemon:
