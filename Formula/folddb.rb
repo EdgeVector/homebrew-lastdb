@@ -43,6 +43,10 @@ class Folddb < Formula
       Then open the dashboard at:
         http://localhost:9001
 
+      After `brew upgrade folddb`, restart the daemon to run the new version
+      (otherwise the old daemon keeps serving on port 9001):
+        folddb daemon stop && folddb daemon start
+
       Second-device bootstrap (restore from BIP39 recovery phrase):
         https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
 
