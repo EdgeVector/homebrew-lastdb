@@ -43,9 +43,15 @@ class Folddb < Formula
       Then open the dashboard at:
         http://localhost:9001
 
-      After `brew upgrade folddb`, restart the daemon to run the new version
-      (otherwise the old daemon keeps serving on port 9001):
-        folddb daemon stop && folddb daemon start
+      After `brew upgrade folddb`, the already-running daemon keeps serving the
+      OLD binary on port 9001 — Homebrew does not restart it for you. Restart
+      it so the new version takes effect:
+
+        brew services restart folddb                  # if started via `brew services`
+        folddb daemon stop && folddb daemon start     # if you run it manually
+
+      A restart drops the daemon's in-memory loaded schemas, so app clients
+      (e.g. fbrain, fkanban) may need to re-run their `init` afterward.
 
       Second-device bootstrap (restore from BIP39 recovery phrase):
         https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
