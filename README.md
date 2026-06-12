@@ -28,18 +28,19 @@ brew upgrade folddb
 
 ## Formula bumps
 
-`Formula/folddb.rb` is updated automatically on each `fold_db_node`
-release. **Do not hand-edit it** — your change will be overwritten on
-the next release.
+`Formula/folddb.rb` is updated automatically on each release of the
+[`EdgeVector/fold`](https://github.com/EdgeVector/fold) monorepo (which
+contains `fold_db_node`). **Do not hand-edit it** — your change will be
+overwritten on the next release.
 
-- **Source**: [`EdgeVector/fold_db_node`](https://github.com/EdgeVector/fold_db_node) workflow `.github/workflows/release.yml`, job `bump-tap`.
-- **Trigger**: push of a release tag matching `v*` to `fold_db_node` (prereleases — tags containing `-`, e.g. `v0.3.0-alpha`, are skipped so they don't overwrite the stable formula).
-- **Mechanism**: the workflow regenerates `Formula/folddb.rb` (version + per-platform sha256s), pushes a branch named `auto-bump/v${VERSION}`, opens a PR titled `bump: folddb → v${VERSION}`, and enables GitHub auto-merge. The PR lands once `ci-required` and `Auto-merge` go green (typically <60s).
-- **Manual cadence**: none. If a tap PR sits open, it's a CI/branch-protection issue on this repo, not a missing release step. Check the [Actions tab on `fold_db_node`](https://github.com/EdgeVector/fold_db_node/actions/workflows/release.yml) for the failing `bump-tap` job.
+- **Source**: [`EdgeVector/fold`](https://github.com/EdgeVector/fold) workflow [`.github/workflows/release.yml`](https://github.com/EdgeVector/fold/blob/main/.github/workflows/release.yml), job `bump-tap`.
+- **Trigger**: push of a release tag matching `v*` to `fold` (prereleases — tags containing `-`, e.g. `v0.3.0-alpha`, are skipped so they don't overwrite the stable formula; the workflow's `workflow_dispatch` and weekly-smoke runs never reach `bump-tap`).
+- **Mechanism**: the workflow regenerates `Formula/folddb.rb` (version + per-platform sha256s), pushes a branch named `auto-bump/v${VERSION}`, opens a PR titled `bump: folddb → v${VERSION}`, and enables GitHub auto-merge (squash, via this repo's merge queue). The PR lands once CI goes green (typically <60s).
+- **Manual cadence**: none. If a tap PR sits open, it's a CI/branch-protection issue on this repo, not a missing release step. Check the [Actions tab on `fold`](https://github.com/EdgeVector/fold/actions/workflows/release.yml) for the failing `bump-tap` job.
 - **Local clones drift**: the bot pushes directly to `main` here. A long-lived local clone of `homebrew-folddb` will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
 
 ## Links
 
 - [FoldDB Website](https://folddb.com)
-- [GitHub](https://github.com/EdgeVector/fold_db_node)
+- [GitHub](https://github.com/EdgeVector/fold)
 - [Documentation](https://edgevector.com/docs)
