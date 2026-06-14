@@ -37,23 +37,35 @@ class Folddb < Formula
 
   def caveats
     <<~EOS
-      To start the FoldDB daemon:
-        folddb daemon start
+      Quickstart:
 
-      Then open the dashboard at:
-        http://localhost:9001
+      1. Start the node — pick ONE (running more than one fights over port 9001):
+           folddb daemon start          # simple; stop with `folddb daemon stop`
+           brew services start folddb   # background service, restarts at login
+           folddb daemon install        # always-on LaunchAgent. Add --durable to
+                                        #   start before login with no keychain prompt
+         `folddb daemon install` stops the others for you, so it's the safe pick
+         if you're not sure what's already running.
 
-      After `brew upgrade folddb`, the already-running daemon keeps serving the
-      OLD binary on port 9001 — Homebrew does not restart it for you. Restart
-      it so the new version takes effect:
+      2. Finish first-time setup (creates your identity + 24-word recovery phrase):
+           folddb setup                 # or open the dashboard and follow the prompts
 
-        brew services restart folddb                  # if started via `brew services`
-        folddb daemon stop && folddb daemon start     # if you run it manually
+      3. Open the dashboard:
+           http://localhost:9001
 
-      A restart drops the daemon's in-memory loaded schemas, so app clients
-      (e.g. fbrain, fkanban) may need to re-run their `init` afterward.
+      SAVE your 24-word recovery phrase somewhere safe — it is the ONLY way to
+      recover your data on another device. Reprint it any time with:
+           folddb recovery-phrase
 
-      Second-device bootstrap (restore from BIP39 recovery phrase):
+      After `brew upgrade folddb`, the running daemon keeps serving the OLD binary
+      on port 9001 — Homebrew does not restart it. Restart it the way you started it:
+           brew services restart folddb                  # if started via `brew services`
+           folddb daemon stop && folddb daemon start     # if started manually
+           folddb daemon install                          # if installed as a LaunchAgent (re-run)
+      A restart drops in-memory loaded schemas, so app clients (e.g. fbrain,
+      fkanban) may need to re-run their `init` afterward.
+
+      Second-device bootstrap (restore from your recovery phrase):
         https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
 
       If you upgraded from fold_db_node < 0.5.1, your data may live at the
