@@ -87,13 +87,17 @@ contains `fold_db_node`).
 
 ### `Formula/folddb-dev.rb`
 
-Updated automatically on each release of
-[`EdgeVector/fold_dev_node`](https://github.com/EdgeVector/fold_dev_node)
-(private repo — the link 404s without org access).
+Updated automatically on each `folddb-dev-v*` release of the
+[`EdgeVector/fold`](https://github.com/EdgeVector/fold) monorepo (which
+contains `fold_dev_node` as the workspace members
+`fold_dev_node/crates/{core,bin}`). The `fold_dev_node` repo was archived
+and folded into `fold` (fold#911, 2026-06-20); its release pipeline now
+lives in the monorepo on its own `folddb-dev-v*` tag line, separate from
+`fold`'s `v*` tags that ship `folddb`/`lastdb`.
 
-- **Source**: `EdgeVector/fold_dev_node` workflow `.github/workflows/release.yml`, job `bump-tap` — a mirror of fold's job, same surgical-edit pattern.
-- **Trigger**: push of a release tag matching `v*` to `fold_dev_node`. Prerelease tags (containing `-`, e.g. `v0.3.0-dev.1`) skip the bump; `workflow_dispatch` is a build-only dry run that publishes nothing.
-- **Assets**: because the source repo is private, the release job first mirrors the tarballs (+ `SHA256SUMS.txt` and `developer-onboarding.md`) to a public release tagged `folddb-dev-v${VERSION}` **on this tap repo** — that's what the formula's `url`s point at. The `folddb-dev-` tag prefix and `--latest=false` keep these mirror releases from colliding with the main formula's.
+- **Source**: `EdgeVector/fold` workflow [`.github/workflows/folddb-dev-release.yml`](https://github.com/EdgeVector/fold/blob/main/.github/workflows/folddb-dev-release.yml), job `bump-tap` — a sibling of `release.yml`'s job, same surgical-edit pattern (it runs `scripts/release/bump-homebrew-formula-dev.rb`).
+- **Trigger**: push of a release tag matching `folddb-dev-v*` to `fold` (e.g. `folddb-dev-v0.3.1`). Prerelease tags (a `-` in the version, e.g. `folddb-dev-v0.3.1-dev.1`) skip the bump; `workflow_dispatch` is a build-only dry run that publishes nothing.
+- **Assets**: because the source repo is private, the release job first mirrors the tarballs (+ `SHA256SUMS.txt` and `developer-onboarding.md`) to a public release tagged `folddb-dev-v${VERSION}` **on this tap repo** — that's what the formula's `url`s point at. The `folddb-dev-` tag prefix and `--latest=false` keep these mirror releases from colliding with the main `folddb`/`lastdb` formula's `v*` releases that share this repo.
 - **Mechanism**: the workflow regenerates `Formula/folddb-dev.rb` (version + per-platform sha256s), pushes a branch named `auto-bump/folddb-dev-v${VERSION}`, opens a PR titled `bump: folddb-dev → v${VERSION}`, and enables auto-merge (squash, via this repo's merge queue).
 - **Hand-edits**: not safe for `version`/`url`/`sha256` lines (overwritten on the next release). Structural edits (caveats, install block) are allowed — the bump is surgical and the workflow fails loudly if its diff touches anything beyond version/url/sha256 lines.
 
