@@ -27,6 +27,9 @@ class Folddb < Formula
     end
   end
 
+  conflicts_with "edgevector/lastdb/lastdb",
+                 because: "both formulas install lastdb, lastdb_server, folddb, and folddb_server"
+
   def install
     # IMPORTANT: install the REAL `lastdb` / `lastdb_server` binaries, not the
     # tiny `folddb*` shims. The release tarball ships both: `folddb*` are

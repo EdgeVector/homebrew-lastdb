@@ -31,10 +31,12 @@ brew install edgevector/folddb/folddb   # still works (alias of lastdb)
 
 Both install the same release tarball, which ships both the new `lastdb` /
 `lastdb_server` binaries and the legacy `folddb` / `folddb_server` names, so
-your existing scripts keep working. To switch over cleanly:
+your existing scripts keep working. The formulas intentionally conflict because
+they own the same commands; uninstall the old formula before installing the new
+one so `lastdb` links cleanly and is not shadowed by an existing `folddb` keg:
 
 ```bash
-brew uninstall folddb
+brew uninstall edgevector/folddb/folddb
 brew install edgevector/lastdb/lastdb
 ```
 

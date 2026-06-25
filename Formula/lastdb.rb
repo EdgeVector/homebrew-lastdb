@@ -21,6 +21,9 @@ class Lastdb < Formula
     end
   end
 
+  conflicts_with "edgevector/lastdb/folddb",
+                 because: "both formulas install lastdb, lastdb_server, folddb, and folddb_server"
+
   def install
     bin.install "lastdb"
     bin.install "lastdb_server"
@@ -65,6 +68,12 @@ class Lastdb < Formula
 
       The old `folddb` / `folddb_server` command names still work (symlinked to
       `lastdb` / `lastdb_server`) for back-compat while you migrate.
+
+      If you already have the old `edgevector/folddb/folddb` formula installed,
+      uninstall it before installing `lastdb`; both formulas own the same command
+      names, so Homebrew cannot link them side-by-side:
+           brew uninstall edgevector/folddb/folddb
+           brew install edgevector/lastdb/lastdb
 
       After `brew upgrade lastdb`, the running daemon keeps serving the OLD binary
       on port 9001 — Homebrew does not restart it. Restart it the way you started it:
