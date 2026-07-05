@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Homebrew formula for the LastDB release artifacts.
 class Lastdb < Formula
   desc "Local-first database for personal data sovereignty"
   homepage "https://thelastdb.com"
@@ -44,6 +47,8 @@ class Lastdb < Formula
   # (schema declare/query/mutate), app-identity, native search, and cloud
   # sync (dormant until `lastdbd connect`) served over the owner Unix socket
   # at ~/.lastdb/data/folddb.sock — no web UI, no ingestion, no discovery.
+  # Pin LASTDB_HOME so the minimal service never falls back to an existing
+  # full-node ~/.folddb home on mixed desktop/service machines.
   # The full node (`lastdb_server`, :9001 dashboard) stays installed for
   # manual use: `lastdb daemon start`.
   service do
@@ -52,7 +57,9 @@ class Lastdb < Formula
     run_at_load true
     log_path var/"log/lastdb/lastdbd.log"
     error_log_path var/"log/lastdb/lastdbd.err.log"
-    environment_variables HOME: Dir.home, PATH: std_service_path_env
+    environment_variables HOME:        Dir.home,
+                          LASTDB_HOME: "#{Dir.home}/.lastdb",
+                          PATH:        std_service_path_env
   end
 
   def caveats
@@ -63,7 +70,9 @@ class Lastdb < Formula
          Runs `lastdbd`: the headless core database on the Unix socket
          ~/.lastdb/data/folddb.sock. No web UI, no ingestion — apps like
          fbrain and fkanban connect straight to the socket. A fresh install
-         generates its identity keyfile on first boot.
+         generates its identity keyfile on first boot. The Homebrew service
+         pins LASTDB_HOME=~/.lastdb so it never attaches to an existing
+         full-node ~/.folddb home.
 
       2. Joining an EXISTING LastDB account as a second device (e.g. your
          desktop node's data, synced through the cloud):
@@ -76,6 +85,13 @@ class Lastdb < Formula
            lastdb setup                 # first-time identity setup
            open http://localhost:9001   # dashboard
       (Don't run both against the same data dir at once.)
+
+      Manual `lastdbd` runs are not service-pinned. On a machine with an
+      existing ~/.folddb full-node home, run the minimal daemon and connect
+      flow with an explicit LastDB home:
+           lastdbd --data-dir ~/.lastdb
+           lastdbd connect --data-dir ~/.lastdb
+      or set LASTDB_HOME=~/.lastdb before invoking `lastdbd`.
 
       SAVE your 24-word recovery phrase somewhere safe — it is the ONLY way to
       recover your data on another device. Reprint it any time with:
