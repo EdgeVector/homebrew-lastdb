@@ -3,10 +3,20 @@
 This is the official [Homebrew](https://brew.sh) tap for LastDB (formerly
 FoldDB), a local-first database for personal data sovereignty.
 
-> **Renamed:** FoldDB → **LastDB** (rebrand, 2026-06). The new install path is
-> `edgevector/lastdb/lastdb`. The old `edgevector/folddb/folddb` path still works
-> (the tap repo keeps a GitHub redirect and a back-compat `folddb` formula), so
-> existing installs are not broken — but new installs should prefer `lastdb`.
+> **The brew version of LastDB is the MINIMAL daemon.** `brew services start
+> lastdb` runs `lastdbd`: the headless core database — schema declare/query/
+> mutate, app-identity, native search, and cloud sync (dormant until
+> `lastdbd connect`) — served over a Unix socket at
+> `~/.lastdb/data/folddb.sock`. No web UI, no ingestion, no discovery. Apps
+> like fbrain and fkanban connect straight to the socket. The full node
+> (`lastdb_server` + the :9001 dashboard) ships in the same tarball for
+> manual use, but the desktop app is its primary home.
+
+> **Renamed + consolidated:** FoldDB → **LastDB** (rebrand, 2026-06). The old
+> `EdgeVector/homebrew-folddb` tap is **archived** (2026-07-05): release
+> assets are published here, and this repo's formulas are the only maintained
+> ones. If you still have the old tap: `brew untap edgevector/folddb` after
+> migrating (see below).
 
 ## Installation
 
