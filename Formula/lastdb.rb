@@ -27,6 +27,11 @@ class Lastdb < Formula
   def install
     bin.install "lastdb"
     bin.install "lastdb_server"
+    # Minimal headless daemon (socket-only, no UI) — the brew-services
+    # default since v0.20.14. Guarded: tarballs before that tag don't ship
+    # it, and the formula must stay installable at the pinned version until
+    # the auto-bump moves past it.
+    bin.install "lastdbd" if File.exist?("lastdbd")
 
     # Back-compat: keep the old `folddb` / `folddb_server` command names working
     # for anyone migrating from `edgevector/folddb/folddb`. The release tarball
@@ -35,32 +40,42 @@ class Lastdb < Formula
     bin.install_symlink "lastdb_server" => "folddb_server"
   end
 
+  # `brew services start lastdb` runs the MINIMAL headless daemon: core DB
+  # (schema declare/query/mutate), app-identity, native search, and cloud
+  # sync (dormant until `lastdbd connect`) served over the owner Unix socket
+  # at ~/.lastdb/data/folddb.sock — no web UI, no ingestion, no discovery.
+  # The full node (`lastdb_server`, :9001 dashboard) stays installed for
+  # manual use: `lastdb daemon start`.
   service do
-    run [opt_bin/"lastdb_server", "--port", "9001"]
+    run [opt_bin/"lastdbd"]
     keep_alive true
     run_at_load true
-    log_path var/"log/lastdb/lastdb.log"
-    error_log_path var/"log/lastdb/lastdb.err.log"
+    log_path var/"log/lastdb/lastdbd.log"
+    error_log_path var/"log/lastdb/lastdbd.err.log"
     environment_variables HOME: Dir.home, PATH: std_service_path_env
   end
 
   def caveats
     <<~EOS
-      Quickstart:
+      Quickstart (minimal daemon — the brew-services default):
 
-      1. Start the node — pick ONE (running more than one fights over port 9001):
-           lastdb daemon start          # simple; stop with `lastdb daemon stop`
-           brew services start lastdb   # background service, restarts at login
-           lastdb daemon install        # always-on LaunchAgent. Add --durable to
-                                        #   start before login with no keychain prompt
-         `lastdb daemon install` stops the others for you, so it's the safe pick
-         if you're not sure what's already running.
+      1. brew services start lastdb
+         Runs `lastdbd`: the headless core database on the Unix socket
+         ~/.lastdb/data/folddb.sock. No web UI, no ingestion — apps like
+         fbrain and fkanban connect straight to the socket. A fresh install
+         generates its identity keyfile on first boot.
 
-      2. Finish first-time setup (creates your identity + 24-word recovery phrase):
-           lastdb setup                 # or open the dashboard and follow the prompts
+      2. Joining an EXISTING LastDB account as a second device (e.g. your
+         desktop node's data, synced through the cloud):
+           lastdbd connect              # paste your 24-word recovery phrase
+           brew services restart lastdb # first boot pulls your data
 
-      3. Open the dashboard:
-           http://localhost:9001
+      Prefer the FULL node (web dashboard on :9001, ingestion, discovery)?
+      It ships in this same package — run it manually instead:
+           lastdb daemon start          # stop with `lastdb daemon stop`
+           lastdb setup                 # first-time identity setup
+           open http://localhost:9001   # dashboard
+      (Don't run both against the same data dir at once.)
 
       SAVE your 24-word recovery phrase somewhere safe — it is the ONLY way to
       recover your data on another device. Reprint it any time with:
