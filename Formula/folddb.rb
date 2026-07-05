@@ -9,6 +9,7 @@ class Folddb < Formula
   homepage "https://thelastdb.com"
   version "0.20.13"
   license "Apache-2.0"
+  deprecate! date: "2026-07-05", because: "this tap is archived; use edgevector/lastdb/lastdb"
 
   on_macos do
     if Hardware::CPU.arm?
