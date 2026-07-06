@@ -7,14 +7,14 @@ class Folddb < Formula
   # `folddb`/`folddb_server` names).
   desc "Local-first database for personal data sovereignty (renamed to lastdb)"
   homepage "https://thelastdb.com"
-  version "0.20.13"
+  version "0.20.14"
   license "Apache-2.0"
 
   on_macos do
     # Apple Silicon only (2026-07-05): the release pipeline no longer builds
     # Intel-mac or Linux tarballs. Re-add a block here if a consumer appears.
-    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.20.13/lastdb-aarch64-apple-darwin.tar.gz"
-    sha256 "cb51d502cba804e3fb6939e8cbb4e89d91639d45505732f54c96807de26380ec"
+    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.20.14/lastdb-aarch64-apple-darwin.tar.gz"
+    sha256 "203c60df86ddeac4d228fd274f2957bf522b72a4470d31f421d69a48717cca22"
   end
 
 
