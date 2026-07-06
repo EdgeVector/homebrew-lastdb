@@ -1,11 +1,8 @@
 class FolddbDev < Formula
-  desc "FoldDB developer node — local dev/test node for building FoldDB apps"
+  desc "Deprecated shim for the retired folddb-dev binary"
   homepage "https://thelastdb.com"
-  version "0.3.0"
+  version "0.3.1"
 
-  # Assets live on this repo's `folddb-dev-v*` mirror releases (the source
-  # repo, EdgeVector/fold_dev_node, is private — its release job mirrors the
-  # tarballs here; see that repo's .github/workflows/release.yml).
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/folddb-dev-v0.3.0/folddb-dev-aarch64-apple-darwin.tar.gz"
@@ -24,24 +21,22 @@ class FolddbDev < Formula
   end
 
   def install
-    bin.install "folddb-dev"
+    (bin/"folddb-dev").write <<~SH
+      #!/bin/sh
+      echo 'folddb-dev is now `folddb dev` — brew install edgevector/lastdb/folddb' >&2
+      exit 1
+    SH
   end
 
   def caveats
     <<~EOS
-      folddb-dev is the FoldDB developer node (dev/test tool — not the
-      end-user FoldDB daemon; that's `brew install edgevector/folddb/folddb`).
-
-      Start here:
-        folddb-dev --help
-        https://github.com/EdgeVector/homebrew-lastdb/releases/download/folddb-dev-v#{version}/developer-onboarding.md
-
-      Publishing apps/schemas needs an Exemem dev API key (invite-only
-      during the alpha) — see the onboarding doc for how to request one.
+      folddb-dev is retired.
+      Use `folddb dev` from the main folddb formula:
+        brew install edgevector/lastdb/folddb
     EOS
   end
 
   test do
-    assert_match version.to_s, shell_output("#{bin}/folddb-dev --version")
+    assert_match "folddb-dev is now `folddb dev`", shell_output("#{bin}/folddb-dev 2>&1", 1)
   end
 end
