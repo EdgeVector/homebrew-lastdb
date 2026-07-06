@@ -11,21 +11,12 @@ class Folddb < Formula
   license "Apache-2.0"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.20.13/lastdb-aarch64-apple-darwin.tar.gz"
-      sha256 "cb51d502cba804e3fb6939e8cbb4e89d91639d45505732f54c96807de26380ec"
-    else
-      url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.20.13/lastdb-x86_64-apple-darwin.tar.gz"
-      sha256 "a27aef3fee4e477ff3f72634600175a2b48105d7cde4636fcfedd4af4d28d55b"
-    end
+    # Apple Silicon only (2026-07-05): the release pipeline no longer builds
+    # Intel-mac or Linux tarballs. Re-add a block here if a consumer appears.
+    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.20.13/lastdb-aarch64-apple-darwin.tar.gz"
+    sha256 "cb51d502cba804e3fb6939e8cbb4e89d91639d45505732f54c96807de26380ec"
   end
 
-  on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.20.13/lastdb-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "93ea013a62819bf5099e86278c29487ff62d3e79c8e5579ebf038007515ba454"
-    end
-  end
 
   conflicts_with "edgevector/lastdb/lastdb",
                  because: "both formulas install lastdb, lastdb_server, folddb, and folddb_server"
