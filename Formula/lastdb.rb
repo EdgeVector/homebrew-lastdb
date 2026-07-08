@@ -2,7 +2,7 @@
 
 # Homebrew formula for the LastDB release artifacts.
 class Lastdb < Formula
-  desc "Local-first database for personal data sovereignty"
+  desc "LastDB Mini local-first database daemon"
   homepage "https://thelastdb.com"
   version "0.21.8"
   license "Apache-2.0"
@@ -23,16 +23,16 @@ class Lastdb < Formula
     bin.install "lastdbd"
 
     # Back-compat: keep the old `folddb` command name working for anyone
-    # migrating from `edgevector/folddb/folddb`. The minimal tarball no longer
+    # migrating from `edgevector/folddb/folddb`. The LastDB Mini tarball no longer
     # ships or installs the full-node `*_server` binaries.
     bin.install_symlink "lastdb" => "folddb"
   end
 
-  # `brew services start lastdb` runs the MINIMAL headless daemon: core DB
+  # `brew services start lastdb` runs LastDB Mini: core DB
   # (schema declare/query/mutate), app-identity, native search, and cloud
   # sync (dormant until `lastdbd connect`) served over the owner Unix socket
   # at ~/.lastdb/data/folddb.sock — no web UI, no ingestion, no discovery.
-  # Pin LASTDB_HOME so the minimal service never falls back to an existing
+  # Pin LASTDB_HOME so the LastDB Mini service never falls back to an existing
   # full-node ~/.folddb home on mixed desktop/service machines.
   service do
     run [opt_bin/"lastdbd"]
@@ -47,7 +47,7 @@ class Lastdb < Formula
 
   def caveats
     <<~EOS
-      Quickstart (minimal daemon — the brew-services default):
+      Quickstart (LastDB Mini — the brew-services default):
 
       1. brew services start lastdb
          Runs `lastdbd`: the headless core database on the Unix socket
@@ -62,12 +62,12 @@ class Lastdb < Formula
            lastdbd connect              # paste your 24-word recovery phrase
            brew services restart lastdb # first boot pulls your data
 
-      Inspect the minimal daemon:
+      Inspect LastDB Mini:
            lastdb status
            lastdbd service-home show
 
       Manual `lastdbd` runs are not service-pinned. On a machine with an
-      existing ~/.folddb full-node home, run the minimal daemon and connect
+      existing ~/.folddb full-node home, run LastDB Mini and connect
       flow with an explicit LastDB home:
            lastdbd --data-dir ~/.lastdb
            lastdbd --data-dir ~/.lastdb connect
@@ -95,7 +95,7 @@ class Lastdb < Formula
         https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
 
       This formula intentionally does not ship the full server/UI/ingestion CLI.
-      Install the desktop app for the GUI and full-node workflows.
+      Install LastDB Desktop for the GUI and full-node workflows.
     EOS
   end
 
