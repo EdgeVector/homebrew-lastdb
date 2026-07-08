@@ -3,13 +3,13 @@
 This is the official [Homebrew](https://brew.sh) tap for LastDB (formerly
 FoldDB), a local-first database for personal data sovereignty.
 
-> **The brew version of LastDB is the MINIMAL daemon.** `brew services start
-> lastdb` runs `lastdbd`: the headless core database — schema declare/query/
+> **Homebrew installs LastDB Mini.** `brew services start lastdb` runs
+> `lastdbd`: the semantic daemon — schema declare/query/
 > mutate, app-identity, native search, and cloud sync (dormant until
 > `lastdbd connect`) — served over a Unix socket at
 > `~/.lastdb/data/folddb.sock`. No web UI, no ingestion, no discovery. Apps
 > like fbrain and fkanban connect straight to the socket. The tarball ships
-> only `lastdb` and `lastdbd`; install the desktop app for the full UI and
+> only `lastdb` and `lastdbd`; install LastDB Desktop for the full UI and
 > ingestion workflows.
 
 > **Renamed + consolidated:** FoldDB → **LastDB** (rebrand, 2026-06). The old
@@ -39,8 +39,8 @@ The old formula still resolves for back-compat:
 brew install edgevector/folddb/folddb   # still works (alias of lastdb)
 ```
 
-Both install the same minimal release tarball, which ships `lastdb` and
-`lastdbd`; the `folddb` command name remains as a compatibility symlink to
+Both install the same LastDB Mini tarball, which ships `lastdb` and `lastdbd`;
+the `folddb` command name remains as a compatibility symlink to
 `lastdb`. The formulas intentionally conflict because they own the same
 commands; uninstall the old formula before installing the new one so `lastdb`
 links cleanly and is not shadowed by an existing `folddb` keg:
@@ -59,7 +59,7 @@ brew upgrade lastdb
 ## Included Binaries
 
 - `lastdb` -- tiny socket/control CLI for inspecting and connecting the daemon
-- `lastdbd` -- minimal semantic daemon served over the owner Unix socket
+- `lastdbd` -- LastDB Mini semantic daemon served over the owner Unix socket
 
 For back-compat, the `folddb` command name is also available, symlinked to
 `lastdb`.
@@ -91,9 +91,9 @@ contains `lastdb_node` and the full desktop app source).
 - **Manual cadence**: none. If a tap PR sits open, it's a CI/branch-protection issue on this repo, not a missing release step. Check the [Actions tab on `fold`](https://github.com/EdgeVector/fold/actions/workflows/release.yml) for the failing `bump-tap` job.
 - **Local clones drift**: the bot pushes directly to `main` here. A long-lived local clone will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
 
-> **Release shape:** since `v0.21.6`, the main formula is intentionally the
-> minimal daemon product: no `lastdb_server`, no `folddb_server`, no web UI
-> bundle, and no ingestion CLI in the Homebrew artifact.
+> **Release shape:** since `v0.21.6`, the main formula is intentionally
+> LastDB Mini: no `lastdb_server`, no `folddb_server`, no web UI bundle, and no
+> ingestion CLI in the Homebrew artifact.
 
 ### `Formula/folddb-dev.rb`
 

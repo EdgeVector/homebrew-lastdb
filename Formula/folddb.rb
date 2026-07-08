@@ -3,8 +3,8 @@ class Folddb < Formula
   # (rebrand Phase 2, 2026-06-20); this keeps existing
   # `brew install edgevector/folddb/folddb` users working. New installs should
   # prefer `brew install edgevector/lastdb/lastdb`. Both install the same
-  # minimal daemon + tiny control CLI.
-  desc "Local-first database for personal data sovereignty (renamed to lastdb)"
+  # LastDB Mini daemon + tiny control CLI.
+  desc "LastDB Mini local-first database daemon (renamed to lastdb)"
   homepage "https://thelastdb.com"
   version "0.21.6"
   license "Apache-2.0"
@@ -22,7 +22,7 @@ class Folddb < Formula
 
   def install
     # Install the canonical tiny `lastdb` control CLI and daemon, then keep the
-    # old `folddb` command name as a compatibility symlink. The minimal tarball
+    # old `folddb` command name as a compatibility symlink. The LastDB Mini tarball
     # no longer ships or installs the full-node `*_server` binaries.
     bin.install "lastdb"
     bin.install "lastdbd"
@@ -47,7 +47,7 @@ class Folddb < Formula
       back-compat alias; new installs should use:
            brew install edgevector/lastdb/lastdb
 
-      Quickstart (minimal daemon):
+      Quickstart (LastDB Mini):
 
       1. Start the daemon:
            brew services start folddb
@@ -72,7 +72,7 @@ class Folddb < Formula
         https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
 
       This formula intentionally does not ship the full server/UI/ingestion CLI.
-      Install the desktop app for the GUI and full-node workflows.
+      Install LastDB Desktop for the GUI and full-node workflows.
     EOS
   end
 
