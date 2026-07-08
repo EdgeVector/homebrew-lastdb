@@ -4,14 +4,14 @@
 class Lastdb < Formula
   desc "Local-first database for personal data sovereignty"
   homepage "https://thelastdb.com"
-  version "0.21.7"
+  version "0.21.8"
   license "Apache-2.0"
 
   on_macos do
     # Apple Silicon only (2026-07-05): the release pipeline no longer builds
     # Intel-mac or Linux tarballs. Re-add a block here if a consumer appears.
-    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.21.7/lastdb-aarch64-apple-darwin.tar.gz"
-    sha256 "e38c33303e15d3a6f29931f2db993244f3e4897d41fcb0abbb4db3f4a7fcad68"
+    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.21.8/lastdb-aarch64-apple-darwin.tar.gz"
+    sha256 "a5fc8051eaa14c7073963ab0877015fac3fed5bacab983c253011fa5ceeceedf"
   end
 
 
