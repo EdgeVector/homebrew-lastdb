@@ -8,9 +8,9 @@ FoldDB), a local-first database for personal data sovereignty.
 > mutate, app-identity, native search, and cloud sync (dormant until
 > `lastdbd connect`) — served over a Unix socket at
 > `~/.lastdb/data/folddb.sock`. No web UI, no ingestion, no discovery. Apps
-> like fbrain and fkanban connect straight to the socket. The full node
-> (`lastdb_server` + the :9001 dashboard) ships in the same tarball for
-> manual use, but the desktop app is its primary home.
+> like fbrain and fkanban connect straight to the socket. The tarball ships
+> only `lastdb` and `lastdbd`; install the desktop app for the full UI and
+> ingestion workflows.
 
 > **Renamed + consolidated:** FoldDB → **LastDB** (rebrand, 2026-06). The old
 > `EdgeVector/homebrew-folddb` tap is **archived** (2026-07-05): release
@@ -39,11 +39,11 @@ The old formula still resolves for back-compat:
 brew install edgevector/folddb/folddb   # still works (alias of lastdb)
 ```
 
-Both install the same release tarball, which ships both the new `lastdb` /
-`lastdb_server` binaries and the legacy `folddb` / `folddb_server` names, so
-your existing scripts keep working. The formulas intentionally conflict because
-they own the same commands; uninstall the old formula before installing the new
-one so `lastdb` links cleanly and is not shadowed by an existing `folddb` keg:
+Both install the same minimal release tarball, which ships `lastdb` and
+`lastdbd`; the `folddb` command name remains as a compatibility symlink to
+`lastdb`. The formulas intentionally conflict because they own the same
+commands; uninstall the old formula before installing the new one so `lastdb`
+links cleanly and is not shadowed by an existing `folddb` keg:
 
 ```bash
 brew uninstall edgevector/folddb/folddb
@@ -58,11 +58,11 @@ brew upgrade lastdb
 
 ## Included Binaries
 
-- `lastdb` -- CLI for interacting with your LastDB instance
-- `lastdb_server` -- HTTP server for the LastDB dashboard and API
+- `lastdb` -- tiny socket/control CLI for inspecting and connecting the daemon
+- `lastdbd` -- minimal semantic daemon served over the owner Unix socket
 
-For back-compat, the `folddb` and `folddb_server` command names are also
-available (symlinked to `lastdb` / `lastdb_server`).
+For back-compat, the `folddb` command name is also available, symlinked to
+`lastdb`.
 
 This tap also ships a second, separate formula: `folddb-dev`, the developer
 node (a dev/test tool for building LastDB apps — not the end-user daemon). It
@@ -82,20 +82,18 @@ next release of the formula's source repo.
 
 Updated automatically on each release of the
 [`EdgeVector/fold`](https://github.com/EdgeVector/fold) monorepo (which
-contains `fold_db_node`).
+contains `lastdb_node` and the full desktop app source).
 
 - **Source**: [`EdgeVector/fold`](https://github.com/EdgeVector/fold) workflow [`.github/workflows/release.yml`](https://github.com/EdgeVector/fold/blob/main/.github/workflows/release.yml), job `bump-tap`.
 - **Trigger**: push of a release tag matching `v*` to `fold` (prereleases — tags containing `-`, e.g. `v0.3.0-alpha`, are skipped so they don't overwrite the stable formula; the workflow's `workflow_dispatch` and weekly-smoke runs never reach `bump-tap`).
-- **Assets**: `EdgeVector/fold` is a **private** repo, so its release tarballs aren't publicly fetchable. The release job mirrors the per-platform tarballs (`lastdb-*.tar.gz` + `folddb-*.tar.gz` + `SHA256SUMS.txt`) to a **public** release tagged `v${VERSION}` **on this tap repo** — that's what the formula's `url`s point at (`github.com/EdgeVector/homebrew-lastdb/releases/...`). Pointing a formula at the private `fold` release URLs would 404 for end users.
+- **Assets**: `EdgeVector/fold` is a **private** repo, so its release tarballs aren't publicly fetchable. The release job mirrors the minimal Apple-Silicon tarball (`lastdb-aarch64-apple-darwin.tar.gz` + `SHA256SUMS.txt`) to a **public** release tagged `v${VERSION}` **on this tap repo** — that's what the formula's `url`s point at (`github.com/EdgeVector/homebrew-lastdb/releases/...`). Pointing a formula at the private `fold` release URLs would 404 for end users.
 - **Mechanism**: the workflow regenerates the formula (version + per-platform sha256s), pushes a branch named `auto-bump/v${VERSION}`, opens a PR titled `bump: lastdb → v${VERSION}`, and enables GitHub auto-merge (squash, via this repo's merge queue). The PR lands once CI goes green (typically <60s).
 - **Manual cadence**: none. If a tap PR sits open, it's a CI/branch-protection issue on this repo, not a missing release step. Check the [Actions tab on `fold`](https://github.com/EdgeVector/fold/actions/workflows/release.yml) for the failing `bump-tap` job.
 - **Local clones drift**: the bot pushes directly to `main` here. A long-lived local clone will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
 
-> **Bot follow-up (rebrand):** the `bump-tap` job on `fold` still regenerates
-> `Formula/folddb.rb` against the `folddb-*` release assets. Until that job is
-> taught to emit `Formula/lastdb.rb` against the `lastdb-*` assets, the next
-> auto-bump may overwrite the `lastdb.rb` formula's source-of-truth status.
-> Tracked as a Phase-3 follow-up.
+> **Release shape:** since `v0.21.6`, the main formula is intentionally the
+> minimal daemon product: no `lastdb_server`, no `folddb_server`, no web UI
+> bundle, and no ingestion CLI in the Homebrew artifact.
 
 ### `Formula/folddb-dev.rb`
 
