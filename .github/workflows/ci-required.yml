@@ -1,23 +1,13 @@
-name: ci-required
+name: ci-required (mirror-inert)
 
-# Org-wide convention: every EdgeVector repo exposes a check named
-# `ci-required` so the org ruleset can require a single, uniform check
-# name across all repos.
-#
-# This is a Homebrew tap (formula files only). No build/test pipeline
-# exists; the umbrella is a stub. If `brew audit` or formula-syntax
-# linting is added later, give it its own job and add it to the
-# `needs:` list on `ci-required`.
+# GitHub is a public Homebrew tap mirror. LastGit is source of truth for
+# CR/CI/merge, and `.lastgit/ci.sh` owns the required `ci-required` gate.
 
 on:
-  pull_request:
-  merge_group:
-
-permissions: {}
+  workflow_dispatch:
 
 jobs:
-  ci-required:
+  inert:
     runs-on: ubuntu-latest
     steps:
-      - name: Stub (no real PR CI in this repo)
-        run: echo "homebrew-folddb is a Homebrew tap; ci-required is a stub for org-wide rule compliance."
+      - run: echo "GitHub mirror - no Actions. Use LastGit lastdb:///homebrew-lastdb."

@@ -3,6 +3,12 @@
 This is the official [Homebrew](https://brew.sh) tap for LastDB (formerly
 FoldDB), a local-first database for personal data sovereignty.
 
+> **Repository workflow:** LastGit `lastdb:///homebrew-lastdb` is the source of
+> truth for code review, CI, and merges. GitHub remains the public Homebrew tap
+> and release-asset surface so `brew tap edgevector/lastdb`, formula URLs, and
+> browser access keep working. The public GitHub `main` branch is a mirror of
+> LastGit `main`; open change requests in LastGit, not GitHub.
+
 > **Homebrew installs LastDB Mini.** `brew services start lastdb` runs
 > `lastdbd`: the semantic daemon — schema declare/query/
 > mutate, app-identity, native search, and cloud sync (dormant until
@@ -76,7 +82,9 @@ brew install edgevector/lastdb/folddb-dev
 
 Both formulas are bot-maintained. **Do not hand-edit the
 `version`/`url`/`sha256` lines of either** — they are regenerated on the
-next release of the formula's source repo.
+next release of the formula's source repo. Release assets continue to be
+published on GitHub because Homebrew consumers need anonymous HTTPS asset
+URLs, but formula changes land through LastGit and are mirrored back to GitHub.
 
 ## Repository venue
 
@@ -103,9 +111,9 @@ contains `lastdb_node` and the full desktop app source).
 - **Source**: [`EdgeVector/fold`](https://github.com/EdgeVector/fold) workflow [`.github/workflows/release.yml`](https://github.com/EdgeVector/fold/blob/main/.github/workflows/release.yml), job `bump-tap`.
 - **Trigger**: push of a release tag matching `v*` to `fold` (prereleases — tags containing `-`, e.g. `v0.3.0-alpha`, are skipped so they don't overwrite the stable formula; the workflow's `workflow_dispatch` and weekly-smoke runs never reach `bump-tap`).
 - **Assets**: `EdgeVector/fold` is a **private** repo, so its release tarballs aren't publicly fetchable. The release job mirrors the minimal Apple-Silicon tarball (`lastdb-aarch64-apple-darwin.tar.gz` + `SHA256SUMS.txt`) to a **public** release tagged `v${VERSION}` **on this tap repo** — that's what the formula's `url`s point at (`github.com/EdgeVector/homebrew-lastdb/releases/...`). Pointing a formula at the private `fold` release URLs would 404 for end users.
-- **Mechanism**: the workflow regenerates the formula (version + per-platform sha256s), pushes a branch named `auto-bump/v${VERSION}`, opens a PR titled `bump: lastdb → v${VERSION}`, and enables GitHub auto-merge (squash, via this repo's merge queue). The PR lands once CI goes green (typically <60s).
+- **Mechanism**: the workflow regenerates the formula (version + per-platform sha256s), pushes a branch named `auto-bump/v${VERSION}`, opens a LastGit CR titled `bump: lastdb → v${VERSION}`, and lets the LastGit `ci-required` gate merge it. The mirror job then pushes the merged formula to the public GitHub tap.
 - **Manual cadence**: none. If a tap PR sits open, it's a CI/branch-protection issue on this repo, not a missing release step. Check the [Actions tab on `fold`](https://github.com/EdgeVector/fold/actions/workflows/release.yml) for the failing `bump-tap` job.
-- **Local clones drift**: the bot pushes directly to `main` here. A long-lived local clone will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
+- **Local clones drift**: the mirror job updates GitHub `main` after LastGit merges. A long-lived local clone will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
 
 > **Release shape:** since `v0.21.6`, the main formula is intentionally
 > LastDB Mini: no `lastdb_server`, no `folddb_server`, no web UI bundle, and no
@@ -124,7 +132,7 @@ lives in the monorepo on its own `folddb-dev-v*` tag line, separate from
 - **Source**: `EdgeVector/fold` workflow [`.github/workflows/folddb-dev-release.yml`](https://github.com/EdgeVector/fold/blob/main/.github/workflows/folddb-dev-release.yml), job `bump-tap` — a sibling of `release.yml`'s job, same surgical-edit pattern (it runs `scripts/release/bump-homebrew-formula-dev.rb`).
 - **Trigger**: push of a release tag matching `folddb-dev-v*` to `fold` (e.g. `folddb-dev-v0.3.1`). Prerelease tags (a `-` in the version, e.g. `folddb-dev-v0.3.1-dev.1`) skip the bump; `workflow_dispatch` is a build-only dry run that publishes nothing.
 - **Assets**: because the source repo is private, the release job first mirrors the tarballs (+ `SHA256SUMS.txt` and `developer-onboarding.md`) to a public release tagged `folddb-dev-v${VERSION}` **on this tap repo** — that's what the formula's `url`s point at. The `folddb-dev-` tag prefix and `--latest=false` keep these mirror releases from colliding with the main `folddb`/`lastdb` formula's `v*` releases that share this repo.
-- **Mechanism**: the workflow regenerates `Formula/folddb-dev.rb` (version + per-platform sha256s), pushes a branch named `auto-bump/folddb-dev-v${VERSION}`, opens a PR titled `bump: folddb-dev → v${VERSION}`, and enables auto-merge (squash, via this repo's merge queue).
+- **Mechanism**: the workflow regenerates `Formula/folddb-dev.rb` (version + per-platform sha256s), pushes a branch named `auto-bump/folddb-dev-v${VERSION}`, opens a LastGit CR titled `bump: folddb-dev → v${VERSION}`, and lets the LastGit `ci-required` gate merge it before the public GitHub mirror updates.
 - **Hand-edits**: not safe for `version`/`url`/`sha256` lines (overwritten on the next release). Structural edits (caveats, install block) are allowed — the bump is surgical and the workflow fails loudly if its diff touches anything beyond version/url/sha256 lines.
 
 ## Links
