@@ -78,6 +78,22 @@ Both formulas are bot-maintained. **Do not hand-edit the
 `version`/`url`/`sha256` lines of either** — they are regenerated on the
 next release of the formula's source repo.
 
+## Repository venue
+
+This tap is dual-home by design:
+
+- GitHub `EdgeVector/homebrew-lastdb` remains the public Homebrew tap, release
+  object host, and end-user install surface.
+- Agent-authored repository changes route through LastGit change requests via
+  `.last-stack/pr-venue`.
+- GitHub `main` must stay mirrored from LastGit `main` so `brew tap
+  edgevector/lastdb` and formula release asset URLs keep working for public
+  users.
+
+The LastGit gate for this repository is intentionally small: `.lastgit/ci.sh`
+checks formula Ruby syntax and verifies that formula URLs still point at this
+public tap's release assets.
+
 ### `Formula/lastdb.rb` (and the `folddb.rb` back-compat alias)
 
 Updated automatically on each release of the
