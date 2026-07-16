@@ -64,6 +64,7 @@ class Lastdb < Formula
 
       Inspect LastDB Mini:
            lastdb status
+           lastdb ops
            lastdbd service-home show
 
       Manual `lastdbd` runs are not service-pinned. On a machine with an
@@ -100,6 +101,8 @@ class Lastdb < Formula
   end
 
   test do
-    assert_match "lastdb", shell_output("#{bin}/lastdb --help").downcase
+    help = shell_output("#{bin}/lastdb --help")
+    assert_match "lastdb", help.downcase
+    assert_match(/\bops\b/, help)
   end
 end

@@ -64,7 +64,8 @@ brew upgrade lastdb
 
 ## Included Binaries
 
-- `lastdb` -- tiny socket/control CLI for inspecting and connecting the daemon
+- `lastdb` -- tiny socket/control CLI for inspecting request ops, status, and
+  cloud connection state
 - `lastdbd` -- LastDB Mini semantic daemon served over the owner Unix socket
 
 For back-compat, the `folddb` command name is also available, symlinked to
@@ -113,6 +114,10 @@ contains `lastdb_node` and the full desktop app source).
 - **Assets**: `EdgeVector/fold` is a **private** repo, so its release tarballs aren't publicly fetchable. The release job mirrors the minimal Apple-Silicon tarball (`lastdb-aarch64-apple-darwin.tar.gz` + `SHA256SUMS.txt`) to a **public** release tagged `v${VERSION}` **on this tap repo** — that's what the formula's `url`s point at (`github.com/EdgeVector/homebrew-lastdb/releases/...`). Pointing a formula at the private `fold` release URLs would 404 for end users.
 - **Mechanism**: the workflow regenerates the formula (version + per-platform sha256s), pushes a branch named `auto-bump/v${VERSION}`, opens a LastGit CR titled `bump: lastdb → v${VERSION}`, and lets the LastGit `ci-required` gate merge it. The mirror job then pushes the merged formula to the public GitHub tap.
 - **Manual cadence**: none. If a tap PR sits open, it's a CI/branch-protection issue on this repo, not a missing release step. Check the [Actions tab on `fold`](https://github.com/EdgeVector/fold/actions/workflows/release.yml) for the failing `bump-tap` job.
+- **Ops CLI floor**: release `v0.22.11` is the first Homebrew Mini release
+  expected to expose `lastdb ops`; `Formula/lastdb.rb`'s `test do` block now
+  asserts the subcommand so future bumps cannot silently regress to a tarball
+  without request-ops telemetry.
 - **Local clones drift**: the mirror job updates GitHub `main` after LastGit merges. A long-lived local clone will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
 
 > **Release shape:** since `v0.21.6`, the main formula is intentionally
