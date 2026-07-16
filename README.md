@@ -1,7 +1,8 @@
 # Homebrew Tap for LastDB
 
 This is the official [Homebrew](https://brew.sh) tap for LastDB (formerly
-FoldDB), a local-first database for personal data sovereignty.
+FoldDB), a local-first database you build your own tool stack on — one local
+database under all your tools, owned by you.
 
 > **Repository workflow:** LastGit `lastdb:///homebrew-lastdb` is the source of
 > truth for code review, CI, and merges. GitHub remains the public Homebrew tap
