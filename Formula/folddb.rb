@@ -6,14 +6,14 @@ class Folddb < Formula
   # LastDB Mini daemon + tiny control CLI.
   desc "LastDB Mini local-first database daemon (renamed to lastdb)"
   homepage "https://thelastdb.com"
-  version "0.22.9"
+  version "0.23.2"
   license "Apache-2.0"
 
   on_macos do
     # Apple Silicon only (2026-07-05): the release pipeline no longer builds
     # Intel-mac or Linux tarballs. Re-add a block here if a consumer appears.
-    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.22.9/lastdb-aarch64-apple-darwin.tar.gz"
-    sha256 "9c732d1f4863d15930bfac30912f1caeb3876b50a09ea35c7195b70f390452c0"
+    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.23.2/lastdb-aarch64-apple-darwin.tar.gz"
+    sha256 "2e547b91295bf69b1ab9451bd7f0d308ad33c38a1446a64d69a0c00ffc57d325"
   end
 
 
@@ -28,17 +28,31 @@ class Folddb < Formula
     bin.install "lastdbd"
 
     bin.install_symlink "lastdb" => "folddb"
+
+    # Runtime-resolved homes for `brew services` (see Formula/lastdb.rb).
+    # Never bake Dir.home into the launchd plist — it freezes install-time HOME.
+    (bin/"lastdbd-service").write <<~SH
+      #!/bin/bash
+      set -euo pipefail
+      if real_home="$(dscl . -read "/Users/$(id -un)" NFSHomeDirectory 2>/dev/null | awk '{print $2}')" \
+         && [ -n "${real_home}" ]; then
+        export HOME="${real_home}"
+      elif real_home="$(eval echo "~$(id -un)" 2>/dev/null)" && [ -n "${real_home}" ]; then
+        export HOME="${real_home}"
+      fi
+      export LASTDB_HOME="${LASTDB_HOME:-${HOME}/.lastdb}"
+      here="$(cd "$(dirname "$0")" && pwd)"
+      exec "${here}/lastdbd" "$@"
+    SH
   end
 
   service do
-    run [opt_bin/"lastdbd"]
+    run [opt_bin/"lastdbd-service"]
     keep_alive true
     run_at_load true
     log_path var/"log/folddb/lastdbd.log"
     error_log_path var/"log/folddb/lastdbd.err.log"
-    environment_variables HOME:        Dir.home,
-                          LASTDB_HOME: "#{Dir.home}/.lastdb",
-                          PATH:        std_service_path_env
+    environment_variables PATH: std_service_path_env
   end
 
   def caveats

@@ -4,14 +4,14 @@
 class Lastdb < Formula
   desc "LastDB Mini local-first database daemon"
   homepage "https://thelastdb.com"
-  version "0.22.9"
+  version "0.23.2"
   license "Apache-2.0"
 
   on_macos do
     # Apple Silicon only (2026-07-05): the release pipeline no longer builds
     # Intel-mac or Linux tarballs. Re-add a block here if a consumer appears.
-    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.22.9/lastdb-aarch64-apple-darwin.tar.gz"
-    sha256 "9c732d1f4863d15930bfac30912f1caeb3876b50a09ea35c7195b70f390452c0"
+    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.23.2/lastdb-aarch64-apple-darwin.tar.gz"
+    sha256 "2e547b91295bf69b1ab9451bd7f0d308ad33c38a1446a64d69a0c00ffc57d325"
   end
 
 
@@ -26,23 +26,40 @@ class Lastdb < Formula
     # migrating from `edgevector/folddb/folddb`. The LastDB Mini tarball no longer
     # ships or installs the full-node `*_server` binaries.
     bin.install_symlink "lastdb" => "folddb"
+
+    # Runtime-resolved homes for `brew services`. Baking Dir.home into the
+    # launchd plist freezes whatever HOME the install process had (including
+    # ephemeral smoke sandboxes under /tmp/...), so later `brew services start
+    # lastdb` points at a dead path. Resolve login HOME + LASTDB_HOME at start.
+    (bin/"lastdbd-service").write <<~SH
+      #!/bin/bash
+      set -euo pipefail
+      if real_home="$(dscl . -read "/Users/$(id -un)" NFSHomeDirectory 2>/dev/null | awk '{print $2}')" \
+         && [ -n "${real_home}" ]; then
+        export HOME="${real_home}"
+      elif real_home="$(eval echo "~$(id -un)" 2>/dev/null)" && [ -n "${real_home}" ]; then
+        export HOME="${real_home}"
+      fi
+      export LASTDB_HOME="${LASTDB_HOME:-${HOME}/.lastdb}"
+      here="$(cd "$(dirname "$0")" && pwd)"
+      exec "${here}/lastdbd" "$@"
+    SH
   end
 
   # `brew services start lastdb` runs LastDB Mini: core DB
   # (schema declare/query/mutate), app-identity, native search, and cloud
   # sync (dormant until `lastdbd connect`) served over the owner Unix socket
   # at ~/.lastdb/data/folddb.sock — no web UI, no ingestion, no discovery.
-  # Pin LASTDB_HOME so the LastDB Mini service never falls back to an existing
-  # full-node ~/.folddb home on mixed desktop/service machines.
+  # LASTDB_HOME is pinned at service *start* by lastdbd-service (not at
+  # install time) so the Mini daemon never falls back to an existing full-node
+  # ~/.folddb home on mixed desktop/service machines.
   service do
-    run [opt_bin/"lastdbd"]
+    run [opt_bin/"lastdbd-service"]
     keep_alive true
     run_at_load true
     log_path var/"log/lastdb/lastdbd.log"
     error_log_path var/"log/lastdb/lastdbd.err.log"
-    environment_variables HOME:        Dir.home,
-                          LASTDB_HOME: "#{Dir.home}/.lastdb",
-                          PATH:        std_service_path_env
+    environment_variables PATH: std_service_path_env
   end
 
   def caveats
@@ -50,12 +67,13 @@ class Lastdb < Formula
       Quickstart (LastDB Mini — the brew-services default):
 
       1. brew services start lastdb
-         Runs `lastdbd`: the headless core database on the Unix socket
-         ~/.lastdb/data/folddb.sock. No web UI, no ingestion — apps like
-         fbrain and fkanban connect straight to the socket. A fresh install
-         generates its identity keyfile on first boot. The Homebrew service
-         pins LASTDB_HOME=~/.lastdb so it never attaches to an existing
-         full-node ~/.folddb home.
+         Runs `lastdbd` via `lastdbd-service`: the headless core database on
+         the Unix socket ~/.lastdb/data/folddb.sock. No web UI, no ingestion —
+         apps like fbrain and fkanban connect straight to the socket. A fresh
+         install generates its identity keyfile on first boot. The service
+         wrapper resolves your login HOME at start and pins
+         LASTDB_HOME=~/.lastdb so it never attaches to an existing full-node
+         ~/.folddb home (and never freezes an install-time sandbox HOME).
 
       2. Joining an EXISTING LastDB account as a second device (e.g. your
          desktop node's data, synced through the cloud):
