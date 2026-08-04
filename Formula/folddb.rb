@@ -28,17 +28,31 @@ class Folddb < Formula
     bin.install "lastdbd"
 
     bin.install_symlink "lastdb" => "folddb"
+
+    # Runtime-resolved homes for `brew services` (see Formula/lastdb.rb).
+    # Never bake Dir.home into the launchd plist — it freezes install-time HOME.
+    (bin/"lastdbd-service").write <<~SH
+      #!/bin/bash
+      set -euo pipefail
+      if real_home="$(dscl . -read "/Users/$(id -un)" NFSHomeDirectory 2>/dev/null | awk '{print $2}')" \
+         && [ -n "${real_home}" ]; then
+        export HOME="${real_home}"
+      elif real_home="$(eval echo "~$(id -un)" 2>/dev/null)" && [ -n "${real_home}" ]; then
+        export HOME="${real_home}"
+      fi
+      export LASTDB_HOME="${LASTDB_HOME:-${HOME}/.lastdb}"
+      here="$(cd "$(dirname "$0")" && pwd)"
+      exec "${here}/lastdbd" "$@"
+    SH
   end
 
   service do
-    run [opt_bin/"lastdbd"]
+    run [opt_bin/"lastdbd-service"]
     keep_alive true
     run_at_load true
     log_path var/"log/folddb/lastdbd.log"
     error_log_path var/"log/folddb/lastdbd.err.log"
-    environment_variables HOME:        Dir.home,
-                          LASTDB_HOME: "#{Dir.home}/.lastdb",
-                          PATH:        std_service_path_env
+    environment_variables PATH: std_service_path_env
   end
 
   def caveats
