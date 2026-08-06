@@ -110,11 +110,12 @@ class Lastdb < Formula
       A restart drops in-memory loaded schemas, so app clients (e.g. fbrain,
       fkanban) may need to re-run their `init` afterward.
 
-      Second-device bootstrap (restore from your recovery phrase):
-        https://github.com/EdgeVector/fold/blob/main/fold_db_node/docs/dogfood/second-device.md
+      Second-device bootstrap: run `lastdbd connect` with your recovery phrase
+      (see https://thelastdb.com and the monorepo root README).
 
-      This formula intentionally does not ship the full server/UI/ingestion CLI.
-      Install LastDB Desktop for the GUI and full-node workflows.
+      This formula ships LastDB Mini only: `lastdbd` + `lastdb` over the owner
+      Unix socket. There is no React web UI, Tauri desktop app, or full-node
+      HTTP server in this bottle — those product surfaces were removed.
     EOS
   end
 
