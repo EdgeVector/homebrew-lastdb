@@ -4,7 +4,7 @@ This is the official [Homebrew](https://brew.sh) tap for LastDB (formerly
 FoldDB), a local-first database you build your own tool stack on — one local
 database under all your tools, owned by you.
 
-> **Repository workflow:** LastGit `lastdb:///homebrew-lastdb` is the source of
+> **Repository workflow:** LastGit `http://localhost:3300/EdgeVector/homebrew-lastdb.git` is the source of
 > truth for code review, CI, and merges. GitHub remains the public Homebrew tap
 > and release-asset surface so `brew tap edgevector/lastdb`, formula URLs, and
 > browser access keep working. The public GitHub `main` branch is a mirror of
