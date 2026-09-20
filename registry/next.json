@@ -1,6 +1,133 @@
 {
   "index_version": 1,
   "channel": "next",
-  "generated_at": "2026-09-20T17:43:01Z",
-  "apps": []
+  "generated_at": "2026-09-20T23:26:36Z",
+  "apps": [
+    {
+      "app_id": "brain",
+      "source": "http://localhost:3300/EdgeVector/brain.git",
+      "compat": [
+        {
+          "app_version": "0.8.0",
+          "sha": "1f2d2f46a7eb65ad6898bd2b75ec9eb2f40e6aeb",
+          "lastdb_version": "0.23.3-2127-gaf73aa569",
+          "proved_at": "2026-09-20T22:40:15Z",
+          "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        }
+      ],
+      "description": "Long-lived knowledge: decisions, rationale, references."
+    },
+    {
+      "app_id": "dogfood-graph",
+      "source": "http://localhost:3300/EdgeVector/dogfood-graph.git",
+      "compat": [
+        {
+          "app_version": "0.1.0",
+          "sha": "2560fc64944451f13922bfe3371cebc9fb2a01f6",
+          "lastdb_version": "0.23.3-2127-gaf73aa569",
+          "proved_at": "2026-09-20T22:40:15Z",
+          "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        }
+      ],
+      "description": "Local dogfood graph UI."
+    },
+    {
+      "app_id": "kanban",
+      "source": "http://localhost:3300/EdgeVector/fkanban.git",
+      "compat": [
+        {
+          "app_version": "0.1.0",
+          "sha": "90ef24ad13f297b48cd9b0da93dd5c57245db6bf",
+          "lastdb_version": "0.23.3-2127-gaf73aa569",
+          "proved_at": "2026-09-20T22:40:15Z",
+          "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        }
+      ],
+      "description": "Kanban board over LastDB."
+    },
+    {
+      "app_id": "lastdb-browser",
+      "source": "http://localhost:3300/EdgeVector/lastdb-browser.git",
+      "compat": [
+        {
+          "app_version": "0.1.0",
+          "sha": "fe1f59f91bfa5bed175d02a15d35b37765ad95b4",
+          "lastdb_version": "0.23.3-2127-gaf73aa569",
+          "proved_at": "2026-09-20T22:40:15Z",
+          "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        }
+      ],
+      "description": "Read-only local data browser."
+    },
+    {
+      "app_id": "lastsecrets",
+      "source": "http://localhost:3300/EdgeVector/lastsecrets.git",
+      "compat": [
+        {
+          "app_version": "0.1.0",
+          "sha": "f293954f3e85a201e6242766817c91aa481798c1",
+          "lastdb_version": "0.23.3-2127-gaf73aa569",
+          "proved_at": "2026-09-20T22:40:15Z",
+          "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        }
+      ],
+      "description": "Local secrets over LastDB."
+    },
+    {
+      "app_id": "org",
+      "source": "http://localhost:3300/EdgeVector/org.git",
+      "compat": [
+        {
+          "app_version": "0.1.1",
+          "sha": "f74308afa658cc110a6e0d7be484c2a7635d065c",
+          "lastdb_version": "0.23.3-2127-gaf73aa569",
+          "proved_at": "2026-09-20T22:40:15Z",
+          "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        }
+      ],
+      "description": "Org invite and join."
+    },
+    {
+      "app_id": "routines",
+      "source": "http://localhost:3300/EdgeVector/routines.git",
+      "compat": [
+        {
+          "app_version": "0.1.0",
+          "sha": "869dc13745f6032262f203a4fdd964045e478568",
+          "lastdb_version": "0.23.3-2127-gaf73aa569",
+          "proved_at": "2026-09-20T22:40:15Z",
+          "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        }
+      ],
+      "description": "Scheduled agent routines."
+    },
+    {
+      "app_id": "search",
+      "source": "http://localhost:3300/EdgeVector/search.git",
+      "compat": [
+        {
+          "app_version": "0.2.0",
+          "sha": "9390c422afcff848a159918177274c2d4e9bf901",
+          "lastdb_version": "0.23.3-2127-gaf73aa569",
+          "proved_at": "2026-09-20T22:40:15Z",
+          "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        }
+      ],
+      "description": "Local semantic search plane."
+    },
+    {
+      "app_id": "situations",
+      "source": "http://localhost:3300/EdgeVector/situations.git",
+      "compat": [
+        {
+          "app_version": "0.1.0",
+          "sha": "923409b1a3e9e810f5c9b5c8155ae25af4a9f7a5",
+          "lastdb_version": "0.23.3-2127-gaf73aa569",
+          "proved_at": "2026-09-20T22:40:15Z",
+          "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        }
+      ],
+      "description": "Shared operational posture and preflight."
+    }
+  ]
 }
