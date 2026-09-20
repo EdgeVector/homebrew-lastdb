@@ -25,6 +25,13 @@ database under all your tools, owned by you.
 > ones. If you still have the old tap: `brew untap edgevector/folddb` after
 > migrating (see below).
 
+## App registry index
+
+`registry/` holds the static signed index the `lastdb app install` command
+reads: which app commits were proved with which LastDB build. It is served
+raw from this repo's GitHub mirror; no account, no live service. See
+[registry/README.md](registry/README.md).
+
 ## Installation
 
 ```bash
