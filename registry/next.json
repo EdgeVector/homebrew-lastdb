@@ -1,7 +1,7 @@
 {
   "index_version": 1,
   "channel": "next",
-  "generated_at": "2026-09-20T23:26:36Z",
+  "generated_at": "2026-09-22T10:38:34Z",
   "apps": [
     {
       "app_id": "brain",
@@ -13,6 +13,13 @@
           "lastdb_version": "0.23.3-2127-gaf73aa569",
           "proved_at": "2026-09-20T22:40:15Z",
           "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        },
+        {
+          "app_version": "0.8.0",
+          "sha": "1f2d2f46a7eb65ad6898bd2b75ec9eb2f40e6aeb",
+          "lastdb_version": "0.23.3-2173-g18ea41d4b",
+          "proved_at": "2026-09-22T09:50:15Z",
+          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
         }
       ],
       "description": "Long-lived knowledge: decisions, rationale, references."
@@ -27,6 +34,13 @@
           "lastdb_version": "0.23.3-2127-gaf73aa569",
           "proved_at": "2026-09-20T22:40:15Z",
           "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "2560fc64944451f13922bfe3371cebc9fb2a01f6",
+          "lastdb_version": "0.23.3-2173-g18ea41d4b",
+          "proved_at": "2026-09-22T09:50:15Z",
+          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
         }
       ],
       "description": "Local dogfood graph UI."
@@ -41,6 +55,13 @@
           "lastdb_version": "0.23.3-2127-gaf73aa569",
           "proved_at": "2026-09-20T22:40:15Z",
           "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "90ef24ad13f297b48cd9b0da93dd5c57245db6bf",
+          "lastdb_version": "0.23.3-2173-g18ea41d4b",
+          "proved_at": "2026-09-22T09:50:15Z",
+          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
         }
       ],
       "description": "Kanban board over LastDB."
@@ -55,6 +76,13 @@
           "lastdb_version": "0.23.3-2127-gaf73aa569",
           "proved_at": "2026-09-20T22:40:15Z",
           "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "fe1f59f91bfa5bed175d02a15d35b37765ad95b4",
+          "lastdb_version": "0.23.3-2173-g18ea41d4b",
+          "proved_at": "2026-09-22T09:50:15Z",
+          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
         }
       ],
       "description": "Read-only local data browser."
@@ -69,6 +97,13 @@
           "lastdb_version": "0.23.3-2127-gaf73aa569",
           "proved_at": "2026-09-20T22:40:15Z",
           "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "f293954f3e85a201e6242766817c91aa481798c1",
+          "lastdb_version": "0.23.3-2173-g18ea41d4b",
+          "proved_at": "2026-09-22T09:50:15Z",
+          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
         }
       ],
       "description": "Local secrets over LastDB."
@@ -83,6 +118,13 @@
           "lastdb_version": "0.23.3-2127-gaf73aa569",
           "proved_at": "2026-09-20T22:40:15Z",
           "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        },
+        {
+          "app_version": "0.1.1",
+          "sha": "f74308afa658cc110a6e0d7be484c2a7635d065c",
+          "lastdb_version": "0.23.3-2173-g18ea41d4b",
+          "proved_at": "2026-09-22T09:50:15Z",
+          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
         }
       ],
       "description": "Org invite and join."
@@ -97,6 +139,13 @@
           "lastdb_version": "0.23.3-2127-gaf73aa569",
           "proved_at": "2026-09-20T22:40:15Z",
           "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "869dc13745f6032262f203a4fdd964045e478568",
+          "lastdb_version": "0.23.3-2173-g18ea41d4b",
+          "proved_at": "2026-09-22T09:50:15Z",
+          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
         }
       ],
       "description": "Scheduled agent routines."
@@ -111,6 +160,13 @@
           "lastdb_version": "0.23.3-2127-gaf73aa569",
           "proved_at": "2026-09-20T22:40:15Z",
           "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        },
+        {
+          "app_version": "0.2.0",
+          "sha": "9390c422afcff848a159918177274c2d4e9bf901",
+          "lastdb_version": "0.23.3-2173-g18ea41d4b",
+          "proved_at": "2026-09-22T09:50:15Z",
+          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
         }
       ],
       "description": "Local semantic search plane."
@@ -125,6 +181,13 @@
           "lastdb_version": "0.23.3-2127-gaf73aa569",
           "proved_at": "2026-09-20T22:40:15Z",
           "proof_run": "llms-smoke-20260920T232635Z-0.23.3-2127-gaf73aa569"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "923409b1a3e9e810f5c9b5c8155ae25af4a9f7a5",
+          "lastdb_version": "0.23.3-2173-g18ea41d4b",
+          "proved_at": "2026-09-22T09:50:15Z",
+          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
         }
       ],
       "description": "Shared operational posture and preflight."
