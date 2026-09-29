@@ -1,0 +1,70 @@
+{
+  "proof_run": "llms-smoke-20260929T195210Z-0.23.3-2378-gbe41e547e",
+  "kind": "llms-txt-install-smoke",
+  "channel": "next",
+  "lastdb_build": "0.23.3-2378-gbe41e547e",
+  "proved_at": "2026-09-29T19:51:54Z",
+  "partial": false,
+  "apps_proved": null,
+  "candidate_set": {
+    "created_at": "2026-09-29T19:50:23Z",
+    "lastdb": {
+      "build": "0.23.3-2378-gbe41e547e",
+      "oid": "",
+      "bin": "/Users/tomtang/.lastdb/current/lastdbd"
+    },
+    "apps": {
+      "brain": {
+        "sha": "e6c5b0c38e186dc6b50c03b2dfe8f19a37b2a13d",
+        "app_version": "0.8.0",
+        "source": "lastdb:///brain"
+      },
+      "kanban": {
+        "sha": "c06234a2c073f9db2f821cc3203c59b46c3cb0c6",
+        "app_version": "0.1.0",
+        "source": "lastdb:///fkanban"
+      },
+      "situations": {
+        "sha": "38b0b7f6d68931fb7fa4a09ffb2fb06b8fc0bac3",
+        "app_version": "0.1.0",
+        "source": "http://localhost:3300/EdgeVector/situations.git"
+      },
+      "routines": {
+        "sha": "3bf55c676a1452e13cfa3f374116d230d3c909ec",
+        "app_version": "0.1.0",
+        "source": "lastdb:///routines"
+      },
+      "dogfood-graph": {
+        "sha": "ac5db6a189884b2b0a4632b015d1aa891c72020a",
+        "app_version": "0.1.0",
+        "source": "lastdb:///dogfood-graph"
+      },
+      "org": {
+        "sha": "633034fed834f7f51a73d0bc2933036ec24a826d",
+        "app_version": "0.1.1",
+        "source": "lastdb:///org"
+      },
+      "lastsecrets": {
+        "sha": "ac0dbea0297d79208ec27b4da4acde84ac51d09a",
+        "app_version": "0.1.0",
+        "source": "lastdb:///lastsecrets"
+      },
+      "search": {
+        "sha": "f99894d7f3605a8cb533d04b76fd126207b0b648",
+        "app_version": "0.2.0",
+        "source": "lastdb:///search"
+      },
+      "lastdb-browser": {
+        "sha": "14b61123bc672ecb6dec78b99aa3f31a4bd7ebd8",
+        "app_version": "0.1.0",
+        "source": "lastdb:///lastdb-browser"
+      }
+    }
+  },
+  "verdict": {
+    "verdict": "GREEN",
+    "pass": 37,
+    "fails": null,
+    "sandbox": "/tmp/llms-txt-install-smoke.UawBHW"
+  }
+}
