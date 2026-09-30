@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# LastGit merge gate for the public LastDB Homebrew tap.
+# Merge gate for the public LastDB Homebrew tap (run by .github/workflows/ci-required.yml).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 

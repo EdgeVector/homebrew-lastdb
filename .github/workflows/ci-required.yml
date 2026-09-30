@@ -1,13 +1,54 @@
-name: ci-required (mirror-inert)
+name: ci-required
 
-# GitHub is a public Homebrew tap mirror. LastGit is source of truth for
-# CR/CI/merge, and `.lastgit/ci.sh` owns the required `ci-required` gate.
+# Gate of record for EdgeVector/homebrew-lastdb (GitHub, since 2026-09-30).
+# Branch protection on main requires the `ci-required` job below.
 
 on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-required-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  inert:
-    runs-on: ubuntu-latest
+  tap-checks:
+    name: tap-checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
-      - run: echo "GitHub mirror - no Actions. Use LastGit lastdb:///homebrew-lastdb."
+      - uses: actions/checkout@v4
+      - name: Tap gate (.lastgit/ci.sh)
+        run: bash .lastgit/ci.sh
+
+  formula-style:
+    name: formula-style
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Formula syntax and brew style
+        run: |
+          set -euo pipefail
+          for f in Formula/*.rb; do ruby -c "$f"; done
+          # Informational: brew style on the formulas. The hard gate is tap-checks.
+          brew style Formula/*.rb || echo "::warning::brew style reported offenses (not blocking)"
+
+  ci-required:
+    name: ci-required
+    if: always()
+    needs: [tap-checks, formula-style]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Require every needed job to succeed
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          echo "$RESULTS"
+          echo "$RESULTS" | jq -e 'to_entries | all(.value.result == "success")' >/dev/null
