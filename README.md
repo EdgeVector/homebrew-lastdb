@@ -4,11 +4,11 @@ This is the official [Homebrew](https://brew.sh) tap for LastDB (formerly
 FoldDB), a local-first database you build your own tool stack on — one local
 database under all your tools, owned by you.
 
-> **Repository workflow:** LastGit `http://localhost:3300/EdgeVector/homebrew-lastdb.git` is the source of
-> truth for code review, CI, and merges. GitHub remains the public Homebrew tap
-> and release-asset surface so `brew tap edgevector/lastdb`, formula URLs, and
-> browser access keep working. The public GitHub `main` branch is a mirror of
-> LastGit `main`; open change requests in LastGit, not GitHub.
+> **Repository workflow:** GitHub `EdgeVector/homebrew-lastdb` is the source
+> of truth for review, CI, and merges, and it is the public Homebrew tap and
+> release-asset surface (`brew tap edgevector/lastdb`). Open pull requests on
+> GitHub. The required check is `ci-required` (`.github/workflows/ci-required.yml`,
+> which runs `.lastgit/ci.sh`).
 
 > **Homebrew installs LastDB Mini.** `brew services start lastdb` runs
 > `lastdbd`: the semantic daemon — schema declare/query/
@@ -93,23 +93,17 @@ Both formulas are bot-maintained. **Do not hand-edit the
 `version`/`url`/`sha256` lines of either** — they are regenerated on the
 next release of the formula's source repo. Release assets continue to be
 published on GitHub because Homebrew consumers need anonymous HTTPS asset
-URLs, but formula changes land through LastGit and are mirrored back to GitHub.
+URLs, but formula changes land through GitHub pull requests.
 
 ## Repository venue
 
-This tap is dual-home by design:
+GitHub `EdgeVector/homebrew-lastdb` is the source of truth. It is also the
+public Homebrew tap, the release object host, and the end-user install
+surface. Changes land by pull request. The required check is `ci-required`.
 
-- GitHub `EdgeVector/homebrew-lastdb` remains the public Homebrew tap, release
-  object host, and end-user install surface.
-- Agent-authored repository changes route through LastGit change requests via
-  `.last-stack/pr-venue`.
-- GitHub `main` must stay mirrored from LastGit `main` so `brew tap
-  edgevector/lastdb` and formula release asset URLs keep working for public
-  users.
-
-The LastGit gate for this repository is intentionally small: `.lastgit/ci.sh`
-checks formula Ruby syntax and verifies that formula URLs still point at this
-public tap's release assets.
+`.lastgit/ci.sh` is the body of the gate. It checks formula Ruby syntax,
+verifies that formula URLs still point at this public tap's release assets,
+and verifies the signed registry indexes.
 
 ### `Formula/lastdb.rb` (and the `folddb.rb` back-compat alias)
 
@@ -120,13 +114,13 @@ contains `lastdb_node` and the full desktop app source).
 - **Source**: [`EdgeVector/fold`](https://github.com/EdgeVector/fold) workflow [`.github/workflows/release.yml`](https://github.com/EdgeVector/fold/blob/main/.github/workflows/release.yml), job `bump-tap`.
 - **Trigger**: push of a release tag matching `v*` to `fold` (prereleases — tags containing `-`, e.g. `v0.3.0-alpha`, are skipped so they don't overwrite the stable formula; the workflow's `workflow_dispatch` and weekly-smoke runs never reach `bump-tap`).
 - **Assets**: `EdgeVector/fold` is a **private** repo, so its release tarballs aren't publicly fetchable. The release job mirrors the minimal Apple-Silicon tarball (`lastdb-aarch64-apple-darwin.tar.gz` + `SHA256SUMS.txt`) to a **public** release tagged `v${VERSION}` **on this tap repo** — that's what the formula's `url`s point at (`github.com/EdgeVector/homebrew-lastdb/releases/...`). Pointing a formula at the private `fold` release URLs would 404 for end users.
-- **Mechanism**: the workflow regenerates the formula (version + per-platform sha256s), pushes a branch named `auto-bump/v${VERSION}`, opens a LastGit CR titled `bump: lastdb → v${VERSION}`, and lets the LastGit `ci-required` gate merge it. The mirror job then pushes the merged formula to the public GitHub tap.
+- **Mechanism**: the workflow regenerates the formula (version + per-platform sha256s), pushes a branch named `auto-bump/v${VERSION}`, opens a GitHub PR titled `bump: lastdb → v${VERSION}`, and lets the `ci-required` check auto-merge it.
 - **Manual cadence**: none. If a tap PR sits open, it's a CI/branch-protection issue on this repo, not a missing release step. Check the [Actions tab on `fold`](https://github.com/EdgeVector/fold/actions/workflows/release.yml) for the failing `bump-tap` job.
 - **Ops CLI floor**: release `v0.22.11` is the first Homebrew Mini release
   expected to expose `lastdb ops`; `Formula/lastdb.rb`'s `test do` block now
   asserts the subcommand so future bumps cannot silently regress to a tarball
   without request-ops telemetry.
-- **Local clones drift**: the mirror job updates GitHub `main` after LastGit merges. A long-lived local clone will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
+- **Local clones drift**: GitHub `main` moves whenever a bump or registry PR merges. A long-lived local clone will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
 
 > **Release shape:** since `v0.21.6`, the main formula is intentionally
 > LastDB Mini: no `lastdb_server`, no `folddb_server`, no web UI bundle, and no
