@@ -1,0 +1,71 @@
+{
+  "proof_run": "ci-smoke-37871268891-0.23.3-2588-g24334db75",
+  "kind": "llms-txt-install-smoke",
+  "channel": "next",
+  "lastdb_build": "0.23.3-2588-g24334db75",
+  "proved_at": "2026-10-09T02:01:27Z",
+  "partial": false,
+  "apps_proved": null,
+  "candidate_set": {
+    "created_at": "2026-10-09T02:00:08Z",
+    "lastdb": {
+      "build": "0.23.3-2588-g24334db75",
+      "oid": "24334db751a93ad5780de25f05420f3871c439bc",
+      "oid_source": "flag",
+      "bin": "/Users/runner/work/_temp/registry-proof-scratch/bin/lastdbd"
+    },
+    "apps": {
+      "brain": {
+        "sha": "34e9095a55401628079a25817a7840194deaccfa",
+        "app_version": "0.8.0",
+        "source": "https://github.com/EdgeVector/brain.git"
+      },
+      "kanban": {
+        "sha": "3a899aedeb8ff5a6a97dd4ce970ef81fa75134d2",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/fkanban.git"
+      },
+      "situations": {
+        "sha": "9b9553bf22058bfaa582735758c509bbd1f68963",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/situations.git"
+      },
+      "routines": {
+        "sha": "214dfb99b6b0bd682295e317c7cce4a35be80514",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/routines.git"
+      },
+      "dogfood-graph": {
+        "sha": "2dab183a3f7b1cff4606ca975f0dcbc3fb99c5b7",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/dogfood-graph.git"
+      },
+      "org": {
+        "sha": "67af0861e0c6e3b395aa00ade9354f3f303e1dd1",
+        "app_version": "0.1.1",
+        "source": "https://github.com/EdgeVector/org.git"
+      },
+      "lastsecrets": {
+        "sha": "c70a1dc33518b9506be253ffe3550988354aaa9d",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/lastsecrets.git"
+      },
+      "search": {
+        "sha": "3764caa01a6af2a75b79eaa3c30590b4140986ba",
+        "app_version": "0.2.0",
+        "source": "https://github.com/EdgeVector/search.git"
+      },
+      "lastdb-browser": {
+        "sha": "28dd959c6aacf878b16a5976d7ff908fef60002d",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/lastdb-browser.git"
+      }
+    }
+  },
+  "verdict": {
+    "verdict": "GREEN",
+    "pass": 37,
+    "fails": null,
+    "sandbox": "/tmp/llms-txt-install-smoke.C2xAfV"
+  }
+}
