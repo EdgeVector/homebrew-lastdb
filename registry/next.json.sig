@@ -1,6 +1,6 @@
 {
   "alg": "ed25519",
   "key_id": "a9c3c16a89799eacfbb1a70044c2dd1e0537b4b3c862a9c1bc97d8578764b57f",
-  "payload_sha256": "dd4b73bed762c31ae4aac88422b789cd64275e9f6b742b0d97b40a5e3f8f47f0",
-  "sig": "cUHDMPzNDhir6kmly6vMJIT0wN4my4IBoNnJjkXhMAzaDqgcKuX++VQhK4LGM47nsJZh0ssUlPub/tj17925AA=="
+  "payload_sha256": "f10070615c4cbf6bd0c288a56f8a9f572d35db9acd470c6818f5cc43c2c94f08",
+  "sig": "4iemDv5J4ChgGkv6NfSruNvaxcTFopgowSC6QTq6tu+Fb8CzW7LUEwTcfUZzXGIKmLEXG8wMxG7bcPnjQgNYCg=="
 }
