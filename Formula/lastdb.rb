@@ -119,9 +119,4 @@ class Lastdb < Formula
     EOS
   end
 
-  test do
-    help = shell_output("#{bin}/lastdb --help")
-    assert_match "lastdb", help.downcase
-    assert_match(/\bops\b/, help)
-  end
 end

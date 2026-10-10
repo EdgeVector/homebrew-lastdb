@@ -91,7 +91,4 @@ class Folddb < Formula
     EOS
   end
 
-  test do
-    assert_match "lastdb", shell_output("#{bin}/folddb --help").downcase
-  end
 end

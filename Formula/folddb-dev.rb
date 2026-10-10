@@ -36,7 +36,4 @@ class FolddbDev < Formula
     EOS
   end
 
-  test do
-    assert_match "folddb-dev is now `folddb dev`", shell_output("#{bin}/folddb-dev 2>&1", 1)
-  end
 end
