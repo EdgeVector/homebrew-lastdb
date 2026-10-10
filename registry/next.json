@@ -1,19 +1,12 @@
 {
   "index_version": 1,
   "channel": "next",
-  "generated_at": "2026-10-10T01:28:49Z",
+  "generated_at": "2026-10-10T01:58:33Z",
   "apps": [
     {
       "app_id": "brain",
       "source": "https://github.com/EdgeVector/brain.git",
       "compat": [
-        {
-          "app_version": "0.8.0",
-          "sha": "1f2d2f46a7eb65ad6898bd2b75ec9eb2f40e6aeb",
-          "lastdb_version": "0.23.3-2173-g18ea41d4b",
-          "proved_at": "2026-09-22T09:50:15Z",
-          "proof_run": "llms-smoke-20260922T103833Z-0.23.3-2173-g18ea41d4b"
-        },
         {
           "app_version": "0.8.0",
           "sha": "9a07398c31b4c57d4030b5c89360d13cfc1b7613",
@@ -146,6 +139,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-10T01:15:17Z",
           "proof_run": "ci-smoke-38011487359-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.8.0",
+          "sha": "c1a7d3a4e42565cf2d2627cb67968cbc110c0144",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-10T01:52:11Z",
+          "proof_run": "ci-smoke-38014152958-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Long-lived knowledge: decisions, rationale, references."
@@ -258,6 +258,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-10T01:15:17Z",
           "proof_run": "ci-smoke-38011487359-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "3edeb4db3892f4b1a4967996c7ecfafa33ec765b",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-10T01:52:11Z",
+          "proof_run": "ci-smoke-38014152958-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Local dogfood graph UI."
@@ -266,13 +273,6 @@
       "app_id": "kanban",
       "source": "https://github.com/EdgeVector/fkanban.git",
       "compat": [
-        {
-          "app_version": "0.1.0",
-          "sha": "c06234a2c073f9db2f821cc3203c59b46c3cb0c6",
-          "lastdb_version": "0.23.3-2375-ga7bac36f1",
-          "proved_at": "2026-09-28T16:28:55Z",
-          "proof_run": "llms-smoke-20260928T163836Z-0.23.3-2375-ga7bac36f1"
-        },
         {
           "app_version": "0.1.0",
           "sha": "c06234a2c073f9db2f821cc3203c59b46c3cb0c6",
@@ -405,6 +405,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-10T01:15:17Z",
           "proof_run": "ci-smoke-38011487359-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "765de9559d93ea227c54c9eb2db70b4c14ee1520",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-10T01:52:11Z",
+          "proof_run": "ci-smoke-38014152958-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Kanban board over LastDB."
@@ -524,6 +531,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-10T01:15:17Z",
           "proof_run": "ci-smoke-38011487359-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "16392fd4094be29405e36a99a2ad27f9423bdecf",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-10T01:52:11Z",
+          "proof_run": "ci-smoke-38014152958-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Read-only local data browser."
@@ -643,6 +657,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-10T01:15:17Z",
           "proof_run": "ci-smoke-38011487359-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "87380d9e8b7d408d9e1a1632918f1aac92c854a6",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-10T01:52:11Z",
+          "proof_run": "ci-smoke-38014152958-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Local secrets over LastDB."
@@ -755,6 +776,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-10T01:15:17Z",
           "proof_run": "ci-smoke-38011487359-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.1.1",
+          "sha": "38d56f10c4f3e10ec867b1a18491215e7449ad84",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-10T01:52:11Z",
+          "proof_run": "ci-smoke-38014152958-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Org invite and join."
@@ -763,13 +791,6 @@
       "app_id": "routines",
       "source": "https://github.com/EdgeVector/routines.git",
       "compat": [
-        {
-          "app_version": "0.1.0",
-          "sha": "bd13d429853f2c349215756a4d249c47eb452dcc",
-          "lastdb_version": "0.23.3-2339-g9b7bf65e4",
-          "proved_at": "2026-09-25T16:57:55Z",
-          "proof_run": "llms-smoke-20260925T175930Z-0.23.3-2339-g9b7bf65e4"
-        },
         {
           "app_version": "0.1.0",
           "sha": "44c129f84c53984da28d01ad9526e747d71139c8",
@@ -902,6 +923,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-10T01:15:17Z",
           "proof_run": "ci-smoke-38011487359-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "e1470b4ae956bad8566e10b261562b7cf59110e4",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-10T01:52:11Z",
+          "proof_run": "ci-smoke-38014152958-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Scheduled agent routines."
@@ -1014,6 +1042,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-10T01:15:17Z",
           "proof_run": "ci-smoke-38011487359-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.2.0",
+          "sha": "fbd5cb0b514b5044345669769a1cc65665f55325",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-10T01:52:11Z",
+          "proof_run": "ci-smoke-38014152958-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Local semantic search plane."
@@ -1140,6 +1175,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-10T01:15:17Z",
           "proof_run": "ci-smoke-38011487359-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "2a4c33946659e3632520e950af9836d55c29e5ad",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-10T01:52:11Z",
+          "proof_run": "ci-smoke-38014152958-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Shared operational posture and preflight."
