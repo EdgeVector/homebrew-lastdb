@@ -1,7 +1,7 @@
 {
   "index_version": 1,
   "channel": "next",
-  "generated_at": "2026-10-11T01:28:31Z",
+  "generated_at": "2026-10-11T04:28:32Z",
   "apps": [
     {
       "app_id": "brain",
@@ -144,8 +144,8 @@
           "app_version": "0.8.0",
           "sha": "c1a7d3a4e42565cf2d2627cb67968cbc110c0144",
           "lastdb_version": "0.23.3-2708-gc85aba73f",
-          "proved_at": "2026-10-11T01:16:56Z",
-          "proof_run": "ci-smoke-38100726547-0.23.3-2708-gc85aba73f"
+          "proved_at": "2026-10-11T04:07:40Z",
+          "proof_run": "ci-smoke-38109869778-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Long-lived knowledge: decisions, rationale, references."
@@ -263,8 +263,8 @@
           "app_version": "0.1.0",
           "sha": "3edeb4db3892f4b1a4967996c7ecfafa33ec765b",
           "lastdb_version": "0.23.3-2708-gc85aba73f",
-          "proved_at": "2026-10-11T01:16:56Z",
-          "proof_run": "ci-smoke-38100726547-0.23.3-2708-gc85aba73f"
+          "proved_at": "2026-10-11T04:07:40Z",
+          "proof_run": "ci-smoke-38109869778-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Local dogfood graph UI."
@@ -410,8 +410,8 @@
           "app_version": "0.1.0",
           "sha": "765de9559d93ea227c54c9eb2db70b4c14ee1520",
           "lastdb_version": "0.23.3-2708-gc85aba73f",
-          "proved_at": "2026-10-11T01:16:56Z",
-          "proof_run": "ci-smoke-38100726547-0.23.3-2708-gc85aba73f"
+          "proved_at": "2026-10-11T04:07:40Z",
+          "proof_run": "ci-smoke-38109869778-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Kanban board over LastDB."
@@ -536,8 +536,8 @@
           "app_version": "0.1.0",
           "sha": "16392fd4094be29405e36a99a2ad27f9423bdecf",
           "lastdb_version": "0.23.3-2708-gc85aba73f",
-          "proved_at": "2026-10-11T01:16:56Z",
-          "proof_run": "ci-smoke-38100726547-0.23.3-2708-gc85aba73f"
+          "proved_at": "2026-10-11T04:07:40Z",
+          "proof_run": "ci-smoke-38109869778-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Read-only local data browser."
@@ -676,8 +676,8 @@
           "app_version": "0.1.0",
           "sha": "1e3b6300bee9d3df19957e6fd00c031202427411",
           "lastdb_version": "0.23.3-2708-gc85aba73f",
-          "proved_at": "2026-10-11T01:16:56Z",
-          "proof_run": "ci-smoke-38100726547-0.23.3-2708-gc85aba73f"
+          "proved_at": "2026-10-11T04:07:40Z",
+          "proof_run": "ci-smoke-38109869778-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Local secrets over LastDB."
@@ -797,6 +797,13 @@
           "lastdb_version": "0.23.3-2708-gc85aba73f",
           "proved_at": "2026-10-11T01:16:56Z",
           "proof_run": "ci-smoke-38100726547-0.23.3-2708-gc85aba73f"
+        },
+        {
+          "app_version": "0.1.1",
+          "sha": "eb42f0acb08c17f91ddf4d8a164df0ef1b028dc0",
+          "lastdb_version": "0.23.3-2708-gc85aba73f",
+          "proved_at": "2026-10-11T04:07:40Z",
+          "proof_run": "ci-smoke-38109869778-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Org invite and join."
@@ -942,8 +949,8 @@
           "app_version": "0.1.0",
           "sha": "e1470b4ae956bad8566e10b261562b7cf59110e4",
           "lastdb_version": "0.23.3-2708-gc85aba73f",
-          "proved_at": "2026-10-11T01:16:56Z",
-          "proof_run": "ci-smoke-38100726547-0.23.3-2708-gc85aba73f"
+          "proved_at": "2026-10-11T04:07:40Z",
+          "proof_run": "ci-smoke-38109869778-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Scheduled agent routines."
@@ -1061,8 +1068,8 @@
           "app_version": "0.2.0",
           "sha": "fbd5cb0b514b5044345669769a1cc65665f55325",
           "lastdb_version": "0.23.3-2708-gc85aba73f",
-          "proved_at": "2026-10-11T01:16:56Z",
-          "proof_run": "ci-smoke-38100726547-0.23.3-2708-gc85aba73f"
+          "proved_at": "2026-10-11T04:07:40Z",
+          "proof_run": "ci-smoke-38109869778-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Local semantic search plane."
@@ -1194,8 +1201,8 @@
           "app_version": "0.1.0",
           "sha": "2a4c33946659e3632520e950af9836d55c29e5ad",
           "lastdb_version": "0.23.3-2708-gc85aba73f",
-          "proved_at": "2026-10-11T01:16:56Z",
-          "proof_run": "ci-smoke-38100726547-0.23.3-2708-gc85aba73f"
+          "proved_at": "2026-10-11T04:07:40Z",
+          "proof_run": "ci-smoke-38109869778-0.23.3-2708-gc85aba73f"
         }
       ],
       "description": "Shared operational posture and preflight."
