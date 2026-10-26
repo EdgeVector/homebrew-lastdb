@@ -1,0 +1,8 @@
+{
+  "product_data": [
+    {
+      "path": "registry/proofs/ci-smoke-40363744074-0.23.4-pre.0-391-g58752ee6e.json",
+      "reason": "Registry proof record named by a compat row. The tap gate requires this file."
+    }
+  ]
+}
