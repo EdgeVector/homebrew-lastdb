@@ -15,6 +15,10 @@
     {
       "path": "registry/proofs/ci-smoke-41232577796-nightly-20261031-57d4f73e6-26-g0706f0b12.json",
       "reason": "Registry proof record named by a compat row. The tap gate requires this file."
+    },
+    {
+      "path": "registry/proofs/ci-smoke-41275047386-nightly-20261031-57d4f73e6-26-g0706f0b12.json",
+      "reason": "Registry proof record named by a compat row. The tap gate requires this file."
     }
   ]
 }
