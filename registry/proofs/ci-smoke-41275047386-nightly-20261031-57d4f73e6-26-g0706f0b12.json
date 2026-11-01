@@ -1,0 +1,92 @@
+{
+  "proof_run": "ci-smoke-41275047386-nightly-20261031-57d4f73e6-26-g0706f0b12",
+  "kind": "llms-txt-install-smoke",
+  "proof_kind": "app_install_startup",
+  "channel": "next",
+  "lastdb_build": "nightly-20261031-57d4f73e6-26-g0706f0b12",
+  "proved_at": "2026-11-01T05:12:41Z",
+  "partial": true,
+  "apps_proved": [
+    "brain",
+    "situations",
+    "routines",
+    "dogfood-graph",
+    "org",
+    "lastsecrets",
+    "search",
+    "lastdb-browser"
+  ],
+  "candidate_set": {
+    "created_at": "2026-11-01T05:11:33Z",
+    "lastdb": {
+      "build": "nightly-20261031-57d4f73e6-26-g0706f0b12",
+      "oid": "0706f0b12acc34f6a2e81ba7fc3fe5cae54dd9d3",
+      "oid_source": "flag",
+      "bin": "/Users/runner/work/_temp/registry-proof-scratch/bin/lastdbd"
+    },
+    "apps": {
+      "brain": {
+        "sha": "59852c3b09c777f27c83158dc4fc29287b70511c",
+        "app_version": "0.8.0",
+        "source": "https://github.com/EdgeVector/brain.git"
+      },
+      "kanban": {
+        "sha": "f4e95275a70a5091e11758e57d834b27d007a8d4",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/fkanban.git"
+      },
+      "situations": {
+        "sha": "375559cbd59eafca0da55af16fe1f2dd4e35df11",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/situations.git"
+      },
+      "routines": {
+        "sha": "9400c4521566e6ab10cc893d355b58f13b56c4da",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/routines.git"
+      },
+      "dogfood-graph": {
+        "sha": "307ec0935730432de25f18869921cac1fdc660b4",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/dogfood-graph.git"
+      },
+      "org": {
+        "sha": "461c80370307737f75893c19f93f5943779af21b",
+        "app_version": "0.1.1",
+        "source": "https://github.com/EdgeVector/org.git"
+      },
+      "lastsecrets": {
+        "sha": "9e121eac05e2ebe6f569a4b641f1b1dfa76121fd",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/lastsecrets.git"
+      },
+      "search": {
+        "sha": "d2876ace943791bbc1dd6353d0257c82040cda3b",
+        "app_version": "0.2.0",
+        "source": "https://github.com/EdgeVector/search.git"
+      },
+      "lastdb-browser": {
+        "sha": "b9b657f7b8397466cf5975e7d15376835dcdf885",
+        "app_version": "0.1.0",
+        "source": "https://github.com/EdgeVector/lastdb-browser.git"
+      },
+      "lastseek": {
+        "sha": "14b695ac471a4b25d81853b8df70c597ab29d70a",
+        "app_version": "0.0.0",
+        "source": "https://github.com/EdgeVector/lastseek.git"
+      }
+    }
+  },
+  "verdict": {
+    "verdict": "RED",
+    "pass": null,
+    "fails": [
+      "install-apps exit=1",
+      "install-apps:lastseek:failed (wanted pinned; lastdb=/Users/runner/work/_temp/registry-proof-scratch/bin/lastdb; stage=dependencies sha=14b695ac471a source=https://github.com/EdgeVector/lastseek.git)",
+      "cli:lastseek not on PATH",
+      "kanban:init exit=1",
+      "kanban:list exit=1"
+    ],
+    "sandbox": "/tmp/llms-txt-install-smoke.S5e8Py"
+  }
+}
