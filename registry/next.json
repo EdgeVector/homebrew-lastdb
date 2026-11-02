@@ -1,19 +1,12 @@
 {
   "index_version": 1,
   "channel": "next",
-  "generated_at": "2026-11-01T16:44:38Z",
+  "generated_at": "2026-11-02T07:01:50Z",
   "apps": [
     {
       "app_id": "brain",
       "source": "https://github.com/EdgeVector/brain.git",
       "compat": [
-        {
-          "app_version": "0.8.0",
-          "sha": "cbc3e5ae880c4fd4716f01f8d0956f67e1b10ce8",
-          "lastdb_version": "0.23.3-2518-ge1177d41a",
-          "proved_at": "2026-10-03T04:42:49Z",
-          "proof_run": "ci-smoke-37096636419-0.23.3-2518-ge1177d41a"
-        },
         {
           "app_version": "0.8.0",
           "sha": "b703057a261576cca60e43da35187a133619b014",
@@ -146,6 +139,13 @@
           "lastdb_version": "nightly-20261101-33b32f216-11-g3108a8958",
           "proved_at": "2026-11-01T16:42:08Z",
           "proof_run": "ci-smoke-41327206173-nightly-20261101-33b32f216-11-g3108a8958"
+        },
+        {
+          "app_version": "0.8.0",
+          "sha": "2bf63751184c666a71dbf20ba7b18347135f8b8e",
+          "lastdb_version": "nightly-20261101-33b32f216-128-g1f74ec1ef",
+          "proved_at": "2026-11-02T06:51:26Z",
+          "proof_run": "ci-smoke-41401319678-nightly-20261101-33b32f216-128-g1f74ec1ef"
         }
       ],
       "description": "Long-lived knowledge: decisions, rationale, references."
@@ -154,13 +154,6 @@
       "app_id": "dogfood-graph",
       "source": "https://github.com/EdgeVector/dogfood-graph.git",
       "compat": [
-        {
-          "app_version": "0.1.0",
-          "sha": "2560fc64944451f13922bfe3371cebc9fb2a01f6",
-          "lastdb_version": "0.23.3-2328-g369ad6cd6",
-          "proved_at": "2026-09-24T22:24:29Z",
-          "proof_run": "llms-smoke-20260924T231906Z-0.23.3-2328-g369ad6cd6"
-        },
         {
           "app_version": "0.1.0",
           "sha": "2560fc64944451f13922bfe3371cebc9fb2a01f6",
@@ -293,6 +286,13 @@
           "lastdb_version": "nightly-20261101-33b32f216-11-g3108a8958",
           "proved_at": "2026-11-01T16:42:08Z",
           "proof_run": "ci-smoke-41327206173-nightly-20261101-33b32f216-11-g3108a8958"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "307ec0935730432de25f18869921cac1fdc660b4",
+          "lastdb_version": "nightly-20261101-33b32f216-128-g1f74ec1ef",
+          "proved_at": "2026-11-02T06:51:26Z",
+          "proof_run": "ci-smoke-41401319678-nightly-20261101-33b32f216-128-g1f74ec1ef"
         }
       ],
       "description": "Local dogfood graph UI."
@@ -450,13 +450,6 @@
       "compat": [
         {
           "app_version": "0.1.0",
-          "sha": "99b707aa0fce96b7edd11dafd70b04c539ac204c",
-          "lastdb_version": "0.23.3-2339-g9b7bf65e4",
-          "proved_at": "2026-09-26T11:02:05Z",
-          "proof_run": "llms-smoke-20260926T110220Z-0.23.3-2339-g9b7bf65e4"
-        },
-        {
-          "app_version": "0.1.0",
           "sha": "14b61123bc672ecb6dec78b99aa3f31a4bd7ebd8",
           "lastdb_version": "0.23.3-2375-ga7bac36f1",
           "proved_at": "2026-09-28T16:28:55Z",
@@ -587,6 +580,13 @@
           "lastdb_version": "nightly-20261101-33b32f216-11-g3108a8958",
           "proved_at": "2026-11-01T16:42:08Z",
           "proof_run": "ci-smoke-41327206173-nightly-20261101-33b32f216-11-g3108a8958"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "d689809d76f1c578cdfb29b88dc70b2d33df0129",
+          "lastdb_version": "nightly-20261101-33b32f216-128-g1f74ec1ef",
+          "proved_at": "2026-11-02T06:51:26Z",
+          "proof_run": "ci-smoke-41401319678-nightly-20261101-33b32f216-128-g1f74ec1ef"
         }
       ],
       "description": "Read-only local data browser."
@@ -595,13 +595,6 @@
       "app_id": "lastsecrets",
       "source": "https://github.com/EdgeVector/lastsecrets.git",
       "compat": [
-        {
-          "app_version": "0.1.0",
-          "sha": "ac0dbea0297d79208ec27b4da4acde84ac51d09a",
-          "lastdb_version": "0.23.3-2378-gbe41e547e",
-          "proved_at": "2026-09-29T19:51:54Z",
-          "proof_run": "llms-smoke-20260929T195210Z-0.23.3-2378-gbe41e547e"
-        },
         {
           "app_version": "0.1.0",
           "sha": "c70a1dc33518b9506be253ffe3550988354aaa9d",
@@ -734,6 +727,13 @@
           "lastdb_version": "nightly-20261101-33b32f216-11-g3108a8958",
           "proved_at": "2026-11-01T16:42:08Z",
           "proof_run": "ci-smoke-41327206173-nightly-20261101-33b32f216-11-g3108a8958"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "4512fe0d3850977e231af34f0b3c067797973076",
+          "lastdb_version": "nightly-20261101-33b32f216-128-g1f74ec1ef",
+          "proved_at": "2026-11-02T06:51:26Z",
+          "proof_run": "ci-smoke-41401319678-nightly-20261101-33b32f216-128-g1f74ec1ef"
         }
       ],
       "description": "Local secrets over LastDB."
@@ -742,13 +742,6 @@
       "app_id": "org",
       "source": "https://github.com/EdgeVector/org.git",
       "compat": [
-        {
-          "app_version": "0.1.1",
-          "sha": "f74308afa658cc110a6e0d7be484c2a7635d065c",
-          "lastdb_version": "0.23.3-2339-g9b7bf65e4",
-          "proved_at": "2026-09-26T11:02:05Z",
-          "proof_run": "llms-smoke-20260926T110220Z-0.23.3-2339-g9b7bf65e4"
-        },
         {
           "app_version": "0.1.1",
           "sha": "f74308afa658cc110a6e0d7be484c2a7635d065c",
@@ -881,6 +874,13 @@
           "lastdb_version": "nightly-20261101-33b32f216-11-g3108a8958",
           "proved_at": "2026-11-01T16:42:08Z",
           "proof_run": "ci-smoke-41327206173-nightly-20261101-33b32f216-11-g3108a8958"
+        },
+        {
+          "app_version": "0.1.1",
+          "sha": "461c80370307737f75893c19f93f5943779af21b",
+          "lastdb_version": "nightly-20261101-33b32f216-128-g1f74ec1ef",
+          "proved_at": "2026-11-02T06:51:26Z",
+          "proof_run": "ci-smoke-41401319678-nightly-20261101-33b32f216-128-g1f74ec1ef"
         }
       ],
       "description": "Org invite and join."
@@ -889,13 +889,6 @@
       "app_id": "routines",
       "source": "https://github.com/EdgeVector/routines.git",
       "compat": [
-        {
-          "app_version": "0.1.0",
-          "sha": "f8b51b5743131e0de4ed056531b13c4d0cee57e2",
-          "lastdb_version": "0.23.3-2378-gbe41e547e",
-          "proved_at": "2026-10-01T22:10:27Z",
-          "proof_run": "llms-smoke-20261001T221045Z-0.23.3-2378-gbe41e547e"
-        },
         {
           "app_version": "0.1.0",
           "sha": "f8b51b5743131e0de4ed056531b13c4d0cee57e2",
@@ -1028,6 +1021,13 @@
           "lastdb_version": "nightly-20261101-33b32f216-11-g3108a8958",
           "proved_at": "2026-11-01T16:42:08Z",
           "proof_run": "ci-smoke-41327206173-nightly-20261101-33b32f216-11-g3108a8958"
+        },
+        {
+          "app_version": "0.1.0",
+          "sha": "972cc7d90bbb406aa276821ae465020ac8228853",
+          "lastdb_version": "nightly-20261101-33b32f216-128-g1f74ec1ef",
+          "proved_at": "2026-11-02T06:51:26Z",
+          "proof_run": "ci-smoke-41401319678-nightly-20261101-33b32f216-128-g1f74ec1ef"
         }
       ],
       "description": "Scheduled agent routines."
@@ -1036,13 +1036,6 @@
       "app_id": "search",
       "source": "https://github.com/EdgeVector/search.git",
       "compat": [
-        {
-          "app_version": "0.2.0",
-          "sha": "f99894d7f3605a8cb533d04b76fd126207b0b648",
-          "lastdb_version": "0.23.3-2328-g369ad6cd6",
-          "proved_at": "2026-09-24T22:24:29Z",
-          "proof_run": "llms-smoke-20260924T231906Z-0.23.3-2328-g369ad6cd6"
-        },
         {
           "app_version": "0.2.0",
           "sha": "f99894d7f3605a8cb533d04b76fd126207b0b648",
@@ -1175,6 +1168,13 @@
           "lastdb_version": "nightly-20261101-33b32f216-11-g3108a8958",
           "proved_at": "2026-11-01T16:42:08Z",
           "proof_run": "ci-smoke-41327206173-nightly-20261101-33b32f216-11-g3108a8958"
+        },
+        {
+          "app_version": "0.2.0",
+          "sha": "d2876ace943791bbc1dd6353d0257c82040cda3b",
+          "lastdb_version": "nightly-20261101-33b32f216-128-g1f74ec1ef",
+          "proved_at": "2026-11-02T06:51:26Z",
+          "proof_run": "ci-smoke-41401319678-nightly-20261101-33b32f216-128-g1f74ec1ef"
         }
       ],
       "description": "Local semantic search plane."
