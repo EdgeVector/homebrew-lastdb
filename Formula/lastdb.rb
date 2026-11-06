@@ -49,8 +49,8 @@ class Lastdb < Formula
   end
 
   # `brew services start lastdb` runs LastDB Mini: core DB
-  # (schema declare/query/mutate), app-identity, native search, and cloud
-  # sync (dormant until `lastdbd connect`) served over the owner Unix socket
+  # (schema declare/query/mutate), app-identity, native search, and backup
+  # controls served over the owner Unix socket
   # at ~/.lastdb/data/folddb.sock — no web UI, no ingestion, no discovery.
   # LASTDB_HOME is pinned at service *start* by lastdbd-service (not at
   # install time) so the Mini daemon never falls back to an existing full-node
@@ -77,25 +77,17 @@ class Lastdb < Formula
          LASTDB_HOME=~/.lastdb so it never attaches to an existing full-node
          ~/.folddb home (and never freezes an install-time sandbox HOME).
 
-      2. Joining an EXISTING LastDB account as a second device (e.g. your
-         desktop node's data, synced through the cloud):
-           lastdbd connect              # paste your 24-word recovery phrase
-           brew services restart lastdb # first boot pulls your data
-
-      Inspect LastDB Mini:
+      2. Inspect the running service and see the commands for this release:
            lastdb status
-           lastdb ops
-           lastdbd service-home show
+           lastdb --help
 
-      Manual `lastdbd` runs are not service-pinned. On a machine with an
-      existing ~/.folddb full-node home, run LastDB Mini and connect
-      flow with an explicit LastDB home:
-           lastdbd --data-dir ~/.lastdb
-           lastdbd --data-dir ~/.lastdb connect
-      or set LASTDB_HOME=~/.lastdb before invoking `lastdbd`.
+      To select a home for a manual daemon launch, pass
+      `lastdbd --data-dir /absolute/path/to/home`. For Homebrew service
+      starts the wrapper uses LASTDB_HOME, with ~/.lastdb as its default.
 
-      SAVE your 24-word recovery phrase somewhere safe — it is the ONLY way to
-      recover your data on another device.
+      Keep your recovery phrase safe. Use the backup and restore help in
+      the installed lastdb CLI to prepare recovery credentials and select
+      an accepted backup for a fresh destination.
 
       The old `folddb` command name still works (symlinked to `lastdb`) for
       back-compat while you migrate.
@@ -106,14 +98,9 @@ class Lastdb < Formula
            brew uninstall edgevector/folddb/folddb
            brew install edgevector/lastdb/lastdb
 
-      After `brew upgrade lastdb`, the running daemon keeps serving the OLD
-      binary — Homebrew does not restart it. Restart it the way you started it:
-           brew services restart lastdb                  # if started via `brew services`
-      A restart drops in-memory loaded schemas, so app clients (e.g. fbrain,
-      fkanban) may need to re-run their `init` afterward.
-
-      Second-device bootstrap: run `lastdbd connect` with your recovery phrase
-      (see https://thelastdb.com and the monorepo root README).
+      After `brew upgrade lastdb`, check the running version with
+      `lastdb status`. Follow the release's home compatibility and upgrade
+      procedure before restarting the service.
 
       This formula ships LastDB Mini only: `lastdbd` + `lastdb` over the owner
       Unix socket. There is no React web UI, Tauri desktop app, or full-node
