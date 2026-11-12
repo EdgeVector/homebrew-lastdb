@@ -4,7 +4,7 @@
 class Lastdb < Formula
   desc "LastDB Mini local-first database daemon"
   homepage "https://thelastdb.com"
-  version "0.23.22"
+  version "0.23.23"
   license "Apache-2.0"
 
   depends_on "openssl@3"
@@ -12,8 +12,8 @@ class Lastdb < Formula
   on_macos do
     # Apple Silicon only (2026-07-05): the release pipeline no longer builds
     # Intel-mac or Linux tarballs. Re-add a block here if a consumer appears.
-    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.23.22/lastdb-aarch64-apple-darwin.tar.gz"
-    sha256 "e3b95308d9b8a59537af6e27f0eaac50e241243424d21abb1d8603659d14253c"
+    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.23.23/lastdb-aarch64-apple-darwin.tar.gz"
+    sha256 "c57166c5e9f9e70d7968627f4fe9256c1fd9f19195f4ad63fa819ea637101e09"
   end
 
 
