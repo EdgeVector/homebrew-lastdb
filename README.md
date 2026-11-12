@@ -25,13 +25,6 @@ database under all your tools, owned by you.
 > ones. If you still have the old tap: `brew untap edgevector/folddb` after
 > migrating (see below).
 
-## App registry index
-
-`registry/` holds the static signed index the `lastdb app install` command
-reads: which app commits were proved with which LastDB build. It is served
-raw from this repo's GitHub mirror; no account, no live service. See
-[registry/README.md](registry/README.md).
-
 ## Installation
 
 ```bash
@@ -101,9 +94,8 @@ GitHub `EdgeVector/homebrew-lastdb` is the source of truth. It is also the
 public Homebrew tap, the release object host, and the end-user install
 surface. Changes land by pull request. The required check is `ci-required`.
 
-`.lastgit/ci.sh` is the body of the gate. It checks formula Ruby syntax,
-verifies that formula URLs still point at this public tap's release assets,
-and verifies the signed registry indexes.
+`.lastgit/ci.sh` is the body of the gate. It checks formula Ruby syntax
+and verifies that formula URLs still point at this public tap's release assets.
 
 ### `Formula/lastdb.rb` (and the `folddb.rb` back-compat alias)
 
@@ -120,7 +112,7 @@ contains `lastdb_node` and the full desktop app source).
   expected to expose `lastdb ops`; `Formula/lastdb.rb`'s `test do` block now
   asserts the subcommand so future bumps cannot silently regress to a tarball
   without request-ops telemetry.
-- **Local clones drift**: GitHub `main` moves whenever a bump or registry PR merges. A long-lived local clone will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
+- **Local clones drift**: GitHub `main` moves whenever a formula bump merges. A long-lived local clone will go stale between releases — `git pull` to catch up. End users get fresh formulas via `brew update`; nobody needs to pull this repo to install.
 
 > **Release shape:** since `v0.21.6`, the main formula is intentionally
 > LastDB Mini: no `lastdb_server`, no `folddb_server`, no web UI bundle, and no
