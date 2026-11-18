@@ -6,7 +6,7 @@ class Folddb < Formula
   # LastDB Mini daemon + tiny control CLI.
   desc "LastDB Mini local-first database daemon (renamed to lastdb)"
   homepage "https://thelastdb.com"
-  version "0.23.35"
+  version "0.23.36"
   license "Apache-2.0"
 
   depends_on "openssl@3"
@@ -14,8 +14,8 @@ class Folddb < Formula
   on_macos do
     # Apple Silicon only (2026-07-05): the release pipeline no longer builds
     # Intel-mac or Linux tarballs. Re-add a block here if a consumer appears.
-    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.23.35/lastdb-aarch64-apple-darwin.tar.gz"
-    sha256 "10bd9f094094a87e4e8ae5b3383e23e73b350069abd8490bd5cae5a3a7b84575"
+    url "https://github.com/EdgeVector/homebrew-lastdb/releases/download/v0.23.36/lastdb-aarch64-apple-darwin.tar.gz"
+    sha256 "033aa14c4f7829d6bffe7b115fe3f3c744130808eaf552973be913f8946f2311"
   end
 
 
